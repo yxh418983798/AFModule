@@ -1,6 +1,6 @@
 {
   "name": "AFModule",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "iOS 基础组件库",
   "description": "TODO: iOS 基础组件库",
   "homepage": "https://github.com/yxh418983798/AFModule",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/yxh418983798/AFModule.git",
-    "tag": "1.0.0"
+    "tag": "1.0.1"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "AFModule/Classes/AFTextModule/*.{h,m}"
+  "source_files": "AFModule/Classes/**/*.{h,m}"
 }

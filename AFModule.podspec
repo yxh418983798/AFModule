@@ -28,7 +28,7 @@ TODO: iOS 基础组件库
   s.source           = { :git => 'https://github.com/yxh418983798/AFModule.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
 
   s.source_files = 'AFModule/Classes/**/*.{h,m}'
 
