@@ -423,38 +423,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0FE95F403E04973486DCA65561CE9F04 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AFModule/AFModule-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AFModule/AFModule-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AFModule/AFModule.modulemap";
-				PRODUCT_MODULE_NAME = AFModule;
-				PRODUCT_NAME = AFModule;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		1B350DF95E6208EB151A13EF95CD4FB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B040CBC4210D8CB7DF9B5937221EB82 /* Pods-AFModule_Example.release.xcconfig */;
@@ -713,7 +681,7 @@
 			};
 			name = Debug;
 		};
-		F19A98827A3CF4D80F45CEEA6EFB827F /* Debug */ = {
+		A23D8FB28AB3B7E24A4B1076EA763F4A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */;
 			buildSettings = {
@@ -729,7 +697,39 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AFModule/AFModule-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AFModule/AFModule-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AFModule/AFModule.modulemap";
+				PRODUCT_MODULE_NAME = AFModule;
+				PRODUCT_NAME = AFModule;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B29BD01E2AB9FD72D1B5E48218611EBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AFModule/AFModule-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AFModule/AFModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AFModule/AFModule.modulemap";
 				PRODUCT_MODULE_NAME = AFModule;
@@ -777,8 +777,8 @@
 		9761AB19551F9735D68D9A86241F790E /* Build configuration list for PBXNativeTarget "AFModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F19A98827A3CF4D80F45CEEA6EFB827F /* Debug */,
-				0FE95F403E04973486DCA65561CE9F04 /* Release */,
+				B29BD01E2AB9FD72D1B5E48218611EBD /* Debug */,
+				A23D8FB28AB3B7E24A4B1076EA763F4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

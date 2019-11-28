@@ -1,22 +1,22 @@
 {
   "name": "AFModule",
-  "version": "0.1.0",
-  "summary": "A short description of AFModule.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.0.0",
+  "summary": "iOS 基础组件库",
+  "description": "TODO: iOS 基础组件库",
   "homepage": "https://github.com/yxh418983798/AFModule",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "yxh418983798": "yxh418983798@dingtalk.com"
+    "Alfie": "418983798@qq.com"
   },
   "source": {
     "git": "https://github.com/yxh418983798/AFModule.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "AFModule/Classes/**/*"
+  "source_files": "AFModule/Classes/AFTextModule/*.{h,m}"
 }
