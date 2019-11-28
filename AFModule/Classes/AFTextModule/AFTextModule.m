@@ -22,7 +22,6 @@
 
 - (BOOL)afhook_textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
-    NSLog(@"-------------------------- 遵循了协议 --------------------------");
     if ([string isEqualToString:@""]) {
         if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
             return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
@@ -198,7 +197,6 @@
 
 - (BOOL)afhook_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
 
-    NSLog(@"-------------------------- 遵循了textView协议 --------------------------");
     if ([text isEqualToString:@""]) {
         if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
             return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
