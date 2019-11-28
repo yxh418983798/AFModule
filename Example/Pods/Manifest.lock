@@ -1,0 +1,16 @@
+PODS:
+  - AFModule (0.1.0)
+
+DEPENDENCIES:
+  - AFModule (from `../`)
+
+EXTERNAL SOURCES:
+  AFModule:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFModule: 1d9b41036453957fbd3b449ee2228deb86328d5c
+
+PODFILE CHECKSUM: 58790d99acd46d8f3a8a8f42a9c6542ffb8fcbf9
+
+COCOAPODS: 1.7.4

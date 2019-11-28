@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */; };
 		52856DC215E21407A0E44A98 /* Pods_AFModule_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -37,8 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		198639AE55D34717E65DA3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		198639AE55D34717E65DA3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AFModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31BB51A0238F7A220003D2A1 /* AFTextModuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTextModuleViewController.h; sourceTree = "<group>"; };
+		31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTextModuleViewController.m; sourceTree = "<group>"; };
 		3AD98ECD3754ABE63BC13B6D /* Pods-AFModule_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Example.debug.xcconfig"; path = "Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		521E53A2437B91BEA129198A /* Pods_AFModule_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AFModule_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* AFModule_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFModule_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,10 +63,10 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		70E01A02EB86B79C4E7D512B /* AFModule.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = AFModule.podspec; path = ../AFModule.podspec; sourceTree = "<group>"; };
+		70E01A02EB86B79C4E7D512B /* AFModule.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AFModule.podspec; path = ../AFModule.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8A274864E0D53D08F430A254 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8A274864E0D53D08F430A254 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		92058E25F3248F65AB47D4B9 /* Pods-AFModule_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Example.release.xcconfig"; path = "Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CDF0AF02B150DA7AA5D7BBE0 /* Pods-AFModule_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Tests.release.xcconfig"; path = "Target Support Files/Pods-AFModule_Tests/Pods-AFModule_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DFD4E3524D1102AAEA771043 /* Pods-AFModule_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AFModule_Tests/Pods-AFModule_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,7 +106,6 @@
 				DFD4E3524D1102AAEA771043 /* Pods-AFModule_Tests.debug.xcconfig */,
 				CDF0AF02B150DA7AA5D7BBE0 /* Pods-AFModule_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -152,6 +154,8 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				31BB51A0238F7A220003D2A1 /* AFTextModuleViewController.h */,
+				31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */,
 			);
 			name = "Example for AFModule";
 			path = AFModule;
@@ -208,7 +212,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				6486522DBC7A510C608C40D0 /* [CP] Embed Pods Frameworks */,
+				B1B0B9F860698396BDCEF508 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -258,6 +262,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -295,24 +300,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6486522DBC7A510C608C40D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFModule/AFModule.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFModule.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8EB487F20F2FF348AC9190E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +320,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1B0B9F860698396BDCEF508 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFModule/AFModule.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFModule.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EEFDDA46D2A4463778F12A23 /* [CP] Check Pods Manifest.lock */ = {
@@ -364,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */,
 				6003F59E195388D20070C39A /* AFAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* AFViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

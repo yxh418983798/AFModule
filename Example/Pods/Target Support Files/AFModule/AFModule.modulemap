@@ -1,0 +1,6 @@
+framework module AFModule {
+  umbrella header "AFModule-umbrella.h"
+
+  export *
+  module * { export * }
+}
