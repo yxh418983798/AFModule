@@ -9,6 +9,7 @@
 #import "AFViewController.h"
 #import "AFTextModuleViewController.h"
 #import "AFTimerViewController.h"
+#import "AFKVOViewController.h"
 
 @interface AFViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -31,6 +32,7 @@
     self.dataSource = [NSMutableArray array];
     [self addDataWithText:@"AFTextModule" class:@"AFTextModuleViewController"];
     [self addDataWithText:@"AFTimer" class:@"AFTimerViewController"];
+    [self addDataWithText:@"KVO" class:@"AFKVOViewController"];
     
 }
 

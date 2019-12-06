@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31532016239A4218001C7942 /* AFTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31532015239A4218001C7942 /* AFTimerViewController.m */; };
+		3153201F239A5BF2001C7942 /* AFKVOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153201E239A5BF2001C7942 /* AFKVOViewController.m */; };
 		31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */; };
 		52856DC215E21407A0E44A98 /* Pods_AFModule_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -43,6 +44,8 @@
 		2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AFModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31532014239A4218001C7942 /* AFTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTimerViewController.h; sourceTree = "<group>"; };
 		31532015239A4218001C7942 /* AFTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTimerViewController.m; sourceTree = "<group>"; };
+		3153201D239A5BF2001C7942 /* AFKVOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFKVOViewController.h; sourceTree = "<group>"; };
+		3153201E239A5BF2001C7942 /* AFKVOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFKVOViewController.m; sourceTree = "<group>"; };
 		31BB51A0238F7A220003D2A1 /* AFTextModuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTextModuleViewController.h; sourceTree = "<group>"; };
 		31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTextModuleViewController.m; sourceTree = "<group>"; };
 		3AD98ECD3754ABE63BC13B6D /* Pods-AFModule_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Example.debug.xcconfig"; path = "Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */,
 				31532014239A4218001C7942 /* AFTimerViewController.h */,
 				31532015239A4218001C7942 /* AFTimerViewController.m */,
+				3153201D239A5BF2001C7942 /* AFKVOViewController.h */,
+				3153201E239A5BF2001C7942 /* AFKVOViewController.m */,
 			);
 			name = "Example for AFModule";
 			path = AFModule;
@@ -374,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3153201F239A5BF2001C7942 /* AFKVOViewController.m in Sources */,
 				31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */,
 				6003F59E195388D20070C39A /* AFAppDelegate.m in Sources */,
 				31532016239A4218001C7942 /* AFTimerViewController.m in Sources */,
