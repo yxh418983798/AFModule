@@ -7,6 +7,8 @@
 //
 
 #import "AFTextModule.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @implementation NSObject (AFTextModule)
 
@@ -20,18 +22,29 @@
     return length;
 }
 
+
+- (BOOL)afperform_textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textField:shouldChangeCharactersInRange:replacementString:", NSStringFromClass(self.class)]);
+    if ([self respondsToSelector:sel]) {
+        return ((BOOL (*)(id, SEL, id, NSRange, NSString *))objc_msgSend)(self, sel, textField, range, string);
+    } else {
+        return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+    }
+}
+
+
 - (BOOL)afhook_textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
     if ([string isEqualToString:@""]) {
         if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-            return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+            return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
         }
         return YES;
     }
     
     if ([string isEqualToString:@"\n"]) {
         if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-            [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
         }
         return NO;
     }
@@ -42,7 +55,7 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNoneNullFirstChar);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
@@ -56,7 +69,7 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNumber);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
@@ -70,7 +83,7 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyChinese);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
@@ -84,7 +97,7 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotChinese);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
@@ -98,7 +111,7 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
@@ -140,7 +153,7 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotEmoji);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
@@ -160,7 +173,7 @@
                     textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
                 }
                 if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                    [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                    [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
                 }
                 return NO;
             }
@@ -181,25 +194,33 @@
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
             }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                 [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                 [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
             return NO;
         }
     }
     
     if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-        return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+        return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
     }
     return YES;
 }
 
 
+- (BOOL)afperform_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textView:shouldChangeTextInRange:replacementText:", NSStringFromClass(self.class)]);
+    if ([self respondsToSelector:sel]) {
+        return ((BOOL (*)(id, SEL, id, NSRange, NSString *))objc_msgSend)(self, sel, textView, range, text);
+    } else {
+        return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+    }
+}
 
 - (BOOL)afhook_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
 
     if ([text isEqualToString:@""]) {
         if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-            return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+            return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
         }
         return YES;
     }
@@ -210,7 +231,7 @@
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNoneNullFirstChar);
             }
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }
             return NO;
         }
@@ -224,7 +245,7 @@
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNumber);
             }
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }
             return NO;
         }
@@ -238,7 +259,7 @@
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyChinese);
             }
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }
             return NO;
         }
@@ -252,7 +273,7 @@
                     textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotChinese);
                 }
                 if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                    [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                    [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
                 }
                 return NO;
             }
@@ -267,7 +288,7 @@
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
             }
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }
             return NO;
         }
@@ -309,7 +330,7 @@
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotEmoji);
             }
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }
             return NO;
         }
@@ -329,7 +350,7 @@
                     textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
                 }
                 if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                    [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                    [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
                 }
                 return NO;
             }
@@ -350,14 +371,14 @@
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
             }
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }
             return NO;
         }
     }
     
     if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-        [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+        return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
     }
     return YES;
 }
@@ -367,7 +388,12 @@
     
     textView.module.placeholderLb.hidden = textView.text.length;
     if ([self respondsToSelector:@selector(textViewDidChange:)]) {
-        [self afhook_textViewDidChange:textView];
+        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]);
+        if ([self respondsToSelector:sel]) {
+            ((void (*)(id, SEL, id))objc_msgSend)(self, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]), textView);
+        } else {
+            [self afhook_textViewDidChange:textView];
+        }
     }
     if (textView.module.maxLenght > 0) {
 
