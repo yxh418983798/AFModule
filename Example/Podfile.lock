@@ -1,5 +1,5 @@
 PODS:
-  - AFModule (1.0.2)
+  - AFModule (1.1.0)
 
 DEPENDENCIES:
   - AFModule (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFModule: 918296fbd82ff9cfa79a9ad5a3274ad5348a4a94
+  AFModule: 84b1af464464e73b4afa1d0044eac795ace5f3dc
 
 PODFILE CHECKSUM: 58790d99acd46d8f3a8a8f42a9c6542ffb8fcbf9
 

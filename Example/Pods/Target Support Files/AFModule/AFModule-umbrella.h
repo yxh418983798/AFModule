@@ -13,6 +13,7 @@
 #import "AFTextModule.h"
 #import "UITextField+AFModule.h"
 #import "UITextView+AFModule.h"
+#import "AFTimer.h"
 
 FOUNDATION_EXPORT double AFModuleVersionNumber;
 FOUNDATION_EXPORT const unsigned char AFModuleVersionString[];

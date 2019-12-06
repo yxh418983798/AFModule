@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		0649248DD9D996BB48213CF75178A659 /* Pods-AFModule_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229A598392493F092513F85C5921FEF /* Pods-AFModule_Example-dummy.m */; };
+		0C28A458BDA384769E1CCCB727514374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		1E38CAFF14B1A76DA580D35E277F73C3 /* AFTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 360C0B34A6FD3FCB9F71186478DEC08B /* AFTimer.m */; };
 		243973D25FF4D34B7946E76704B6E0CF /* Pods-AFModule_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D0E2FD87FEC603182BC32812366D8C /* Pods-AFModule_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E8AE4B91750AE9B8E434C1C8C269789 /* AFModule-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8855494B8C2459F26C02D2C72E89124C /* AFModule-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F1E2AED3A29ADA915FF4E1356AA4DC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		36912B7646306F7F46346DA3D854A08D /* Pods-AFModule_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F19CC652A9462094AE9AAD74DE751434 /* Pods-AFModule_Tests-dummy.m */; };
+		3A3BCCB7A9F25ECC684D79BD566C9B38 /* UITextView+AFModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A12CEFA06F8F48C212C3887A06A953 /* UITextView+AFModule.m */; };
 		3C09AA64FE44289179A472EDF2AE73EF /* Pods-AFModule_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B0607E6A665A432B4D3C8A9B5BF36D /* Pods-AFModule_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C99412B30936D5EDBA7BD8C2CB0E884 /* AFTextModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBA5AB0EA6F238CF4C11D530CB068E8 /* AFTextModule.m */; };
 		5039141CB0498D4FD178EA9223BFBC19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		50939A4CA461EA8856181ED824777012 /* UITextField+AFModule.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0E6F9EA54830E09ED42E1973734D01 /* UITextField+AFModule.m */; };
-		57A0719F898EED7BCF896AE869CEE57B /* AFTextModule.h in Headers */ = {isa = PBXBuildFile; fileRef = D6417D558DB455998F59E6AB97B5023E /* AFTextModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64270F5064FA6AD0D60A8955721DF034 /* UITextView+AFModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4450721FD7F9EC37711A902FDB74FA4A /* UITextView+AFModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		76EF4A5CE1F5FD45AA4409DF17CFBDAA /* AFModule-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB312028F365E94948474C8443943D18 /* AFModule-dummy.m */; };
-		99115F49AA1FE791388E4494D91B3FB9 /* UITextView+AFModule.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE72A063F904906EEEE041B81A9E6BE /* UITextView+AFModule.m */; };
-		A38B2070943E173991273916842BBE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		ACF238AF84B16201F269A697AAE2E35A /* UITextField+AFModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B9531B2139FAF885EB399757E2DD83 /* UITextField+AFModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E3543C910CBA910A8DFE015BD05304E /* AFTextModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB8B39AB1D76584E90204BE5341A0F /* AFTextModule.m */; };
+		6C534AE1F1F551AC20B0636924A69672 /* UITextView+AFModule.h in Headers */ = {isa = PBXBuildFile; fileRef = F2189CF5E234162F95631548E4D4C60F /* UITextView+AFModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70104EAD6C534A7989379119A7E42DE5 /* AFTextModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 821E04D6E2ABBF1A44987FC7C80BE4FF /* AFTextModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72A911BAA71A8A28D2A694910A16BAB4 /* AFModule-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9918734692B15746D345682FECD2D8D /* AFModule-dummy.m */; };
+		92FE226CE5F93963EC776511C82E4B59 /* UITextField+AFModule.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1BC0E89E2C10FE93BBC633B9F2E19D /* UITextField+AFModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0D9AF1FC34D4DFB16F39E98DEDDD939 /* UITextField+AFModule.m in Sources */ = {isa = PBXBuildFile; fileRef = E691D9213A99F5A9316C39D91E718AA8 /* UITextField+AFModule.m */; };
+		A1FB870918020C3AFC4F16B6D78A02AC /* AFModule-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6497104ED7959AAFB2566D224EB46304 /* AFModule-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B39169278FF4C54FFE7D99B5FCB9D39F /* AFTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F71BA3225653ABF591A18A64EE0ACCC /* AFTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,54 +44,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02D996E102B97EA940805CF677C66AD2 /* AFModule.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFModule.xcconfig; sourceTree = "<group>"; };
 		0839FC8136850153C6B5A2810782C487 /* Pods-AFModule_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AFModule_Example-Info.plist"; sourceTree = "<group>"; };
+		09A12CEFA06F8F48C212C3887A06A953 /* UITextView+AFModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AFModule.m"; sourceTree = "<group>"; };
 		18B0607E6A665A432B4D3C8A9B5BF36D /* Pods-AFModule_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AFModule_Example-umbrella.h"; sourceTree = "<group>"; };
-		1BBA5AB0EA6F238CF4C11D530CB068E8 /* AFTextModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFTextModule.m; path = AFModule/Classes/AFTextModule/AFTextModule.m; sourceTree = "<group>"; };
-		20B9531B2139FAF885EB399757E2DD83 /* UITextField+AFModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextField+AFModule.h"; path = "AFModule/Classes/AFTextModule/UITextField+AFModule.h"; sourceTree = "<group>"; };
 		29FC028AAEE70F2C47D5D888C5994514 /* Pods_AFModule_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AFModule_Tests.framework; path = "Pods-AFModule_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B040CBC4210D8CB7DF9B5937221EB82 /* Pods-AFModule_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AFModule_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		360C0B34A6FD3FCB9F71186478DEC08B /* AFTimer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFTimer.m; sourceTree = "<group>"; };
 		3BCC6A34E6B585E48B01B10BB0BC254E /* Pods-AFModule_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AFModule_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4450721FD7F9EC37711A902FDB74FA4A /* UITextView+AFModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+AFModule.h"; path = "AFModule/Classes/AFTextModule/UITextView+AFModule.h"; sourceTree = "<group>"; };
-		4FA5B2AF5B3C0C2D093A4BBAF4AD97CB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		3FCB8B39AB1D76584E90204BE5341A0F /* AFTextModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFTextModule.m; sourceTree = "<group>"; };
+		415942D1862669AE4A322E662B541A04 /* AFModule-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFModule-prefix.pch"; sourceTree = "<group>"; };
 		5DF527FF5C68D9CD07BABF7B35696F74 /* Pods-AFModule_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AFModule_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		60440FFBAD6EA3656B0D3CA5ECEB6984 /* AFModule-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AFModule-Info.plist"; sourceTree = "<group>"; };
+		6497104ED7959AAFB2566D224EB46304 /* AFModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFModule-umbrella.h"; sourceTree = "<group>"; };
 		64D0E2FD87FEC603182BC32812366D8C /* Pods-AFModule_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AFModule_Tests-umbrella.h"; sourceTree = "<group>"; };
-		68931A4BDDF92C26190A6D3D885D270A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		6F71BA3225653ABF591A18A64EE0ACCC /* AFTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFTimer.h; sourceTree = "<group>"; };
 		7CFD316C5699887C0B4CB5B1DCCC9CF3 /* Pods_AFModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AFModule_Example.framework; path = "Pods-AFModule_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		821E04D6E2ABBF1A44987FC7C80BE4FF /* AFTextModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFTextModule.h; sourceTree = "<group>"; };
 		8229A598392493F092513F85C5921FEF /* Pods-AFModule_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AFModule_Example-dummy.m"; sourceTree = "<group>"; };
-		8855494B8C2459F26C02D2C72E89124C /* AFModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFModule-umbrella.h"; sourceTree = "<group>"; };
+		92DF68F0315C0560830379CF40324AFC /* AFModule-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AFModule-Info.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DAAC67A75CA2092E2DB513A3503959C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		9FF6C64AD6D2A4E4E1D1BFBE59434490 /* Pods-AFModule_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AFModule_Tests.modulemap"; sourceTree = "<group>"; };
 		A834C38EACB444E036F7F3E498C38CD9 /* AFModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFModule.framework; path = AFModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6E0E3CC9AFC5A15FA6360AFF6F5AFC /* Pods-AFModule_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AFModule_Example-frameworks.sh"; sourceTree = "<group>"; };
-		ACE72A063F904906EEEE041B81A9E6BE /* UITextView+AFModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextView+AFModule.m"; path = "AFModule/Classes/AFTextModule/UITextView+AFModule.m"; sourceTree = "<group>"; };
 		AD821A516DBA66383490AA96524B61AA /* Pods-AFModule_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AFModule_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFModule.xcconfig; sourceTree = "<group>"; };
 		B9A9FEFF245BCFD9FB1EA0C7CE32420E /* Pods-AFModule_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AFModule_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C0A3CF2CA63FF00223087875A58BE4C2 /* Pods-AFModule_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AFModule_Example.modulemap"; sourceTree = "<group>"; };
-		CB312028F365E94948474C8443943D18 /* AFModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFModule-dummy.m"; sourceTree = "<group>"; };
-		D6417D558DB455998F59E6AB97B5023E /* AFTextModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFTextModule.h; path = AFModule/Classes/AFTextModule/AFTextModule.h; sourceTree = "<group>"; };
-		DA0E6F9EA54830E09ED42E1973734D01 /* UITextField+AFModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextField+AFModule.m"; path = "AFModule/Classes/AFTextModule/UITextField+AFModule.m"; sourceTree = "<group>"; };
+		CA1BC0E89E2C10FE93BBC633B9F2E19D /* UITextField+AFModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextField+AFModule.h"; sourceTree = "<group>"; };
+		D5EF9E6CFC3C54F1ABA31384976E76C9 /* AFModule.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AFModule.modulemap; sourceTree = "<group>"; };
 		DD234C076FC2037F2676D83A46441E94 /* Pods-AFModule_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AFModule_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E9B7CDA5546BEFB971149CDBD547AB4D /* AFModule-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFModule-prefix.pch"; sourceTree = "<group>"; };
+		E691D9213A99F5A9316C39D91E718AA8 /* UITextField+AFModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AFModule.m"; sourceTree = "<group>"; };
+		E9918734692B15746D345682FECD2D8D /* AFModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFModule-dummy.m"; sourceTree = "<group>"; };
 		ECF7CA5E2928ED21BFA36E9E3E79E1FC /* Pods-AFModule_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AFModule_Tests-Info.plist"; sourceTree = "<group>"; };
 		F19CC652A9462094AE9AAD74DE751434 /* Pods-AFModule_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AFModule_Tests-dummy.m"; sourceTree = "<group>"; };
+		F2189CF5E234162F95631548E4D4C60F /* UITextView+AFModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextView+AFModule.h"; sourceTree = "<group>"; };
 		F42CA15E1B71B7BD434C6068981E3734 /* Pods-AFModule_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AFModule_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F7A4DDA8D001590BB82791150B374452 /* Pods-AFModule_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AFModule_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		F8AB2D356F2B35171DFB368F3F2529CC /* AFModule.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AFModule.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		FAECF4195E35B7BE27B1173643F46570 /* AFModule.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AFModule.modulemap; sourceTree = "<group>"; };
+		FB98B0A2A67CCC9E5064FDCE8EA05B66 /* AFModule.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AFModule.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FE709621C55F9AB868B7A9DA4F71FE77 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0333782EFF7DBC363D8FEE812EF26073 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A38B2070943E173991273916842BBE67 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AD6F7DF1CD132D0F58573892DC7E2E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,9 +102,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C08C9DFA17F75F03556BBC880F9A53FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C28A458BDA384769E1CCCB727514374 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CC6B782DA34D8F8469B06B890062328 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				FB98B0A2A67CCC9E5064FDCE8EA05B66 /* AFModule.podspec */,
+				9DAAC67A75CA2092E2DB513A3503959C /* LICENSE */,
+				FE709621C55F9AB868B7A9DA4F71FE77 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		1346C97F0A5AE361D294E755DC6392F2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF9E6CFC3C54F1ABA31384976E76C9 /* AFModule.modulemap */,
+				02D996E102B97EA940805CF677C66AD2 /* AFModule.xcconfig */,
+				E9918734692B15746D345682FECD2D8D /* AFModule-dummy.m */,
+				92DF68F0315C0560830379CF40324AFC /* AFModule-Info.plist */,
+				415942D1862669AE4A322E662B541A04 /* AFModule-prefix.pch */,
+				6497104ED7959AAFB2566D224EB46304 /* AFModule-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/AFModule";
+			sourceTree = "<group>";
+		};
 		4473919BF3858DC111284837D59DA0FE /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,16 +144,6 @@
 				4E3EF3ABF6E81D2BEA0A9FB07CEA3494 /* Pods-AFModule_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		490408918FB58D7755E93EA020E6B933 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				F8AB2D356F2B35171DFB368F3F2529CC /* AFModule.podspec */,
-				68931A4BDDF92C26190A6D3D885D270A /* LICENSE */,
-				4FA5B2AF5B3C0C2D093A4BBAF4AD97CB /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		4E3EF3ABF6E81D2BEA0A9FB07CEA3494 /* Pods-AFModule_Tests */ = {
@@ -144,28 +162,38 @@
 			path = "Target Support Files/Pods-AFModule_Tests";
 			sourceTree = "<group>";
 		};
-		6AC01B51E1A1B375A03F41E5C502E933 /* AFModule */ = {
+		53A20BF5418497EF05FA8FA5577D5755 /* AFTextModule */ = {
 			isa = PBXGroup;
 			children = (
-				D6417D558DB455998F59E6AB97B5023E /* AFTextModule.h */,
-				1BBA5AB0EA6F238CF4C11D530CB068E8 /* AFTextModule.m */,
-				20B9531B2139FAF885EB399757E2DD83 /* UITextField+AFModule.h */,
-				DA0E6F9EA54830E09ED42E1973734D01 /* UITextField+AFModule.m */,
-				4450721FD7F9EC37711A902FDB74FA4A /* UITextView+AFModule.h */,
-				ACE72A063F904906EEEE041B81A9E6BE /* UITextView+AFModule.m */,
-				490408918FB58D7755E93EA020E6B933 /* Pod */,
-				F3B9E48970979A31D07AF827CE9851B9 /* Support Files */,
+				821E04D6E2ABBF1A44987FC7C80BE4FF /* AFTextModule.h */,
+				3FCB8B39AB1D76584E90204BE5341A0F /* AFTextModule.m */,
+				CA1BC0E89E2C10FE93BBC633B9F2E19D /* UITextField+AFModule.h */,
+				E691D9213A99F5A9316C39D91E718AA8 /* UITextField+AFModule.m */,
+				F2189CF5E234162F95631548E4D4C60F /* UITextView+AFModule.h */,
+				09A12CEFA06F8F48C212C3887A06A953 /* UITextView+AFModule.m */,
+			);
+			name = AFTextModule;
+			path = AFModule/Classes/AFTextModule;
+			sourceTree = "<group>";
+		};
+		5D671435FDCC42536FEF6A2A0BFB3235 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B768D6E1011DBAB66184DCAE695C3902 /* AFModule */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		B768D6E1011DBAB66184DCAE695C3902 /* AFModule */ = {
+			isa = PBXGroup;
+			children = (
+				53A20BF5418497EF05FA8FA5577D5755 /* AFTextModule */,
+				EED466A0186BE183C0C37554EC2D03B4 /* AFTimer */,
+				0CC6B782DA34D8F8469B06B890062328 /* Pod */,
+				1346C97F0A5AE361D294E755DC6392F2 /* Support Files */,
 			);
 			name = AFModule;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		78C31AE6AEFD75911F27246B9BC9F72A /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6AC01B51E1A1B375A03F41E5C502E933 /* AFModule */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -180,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				78C31AE6AEFD75911F27246B9BC9F72A /* Development Pods */,
+				5D671435FDCC42536FEF6A2A0BFB3235 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				D2B75AA4D3141525967C12CD785245E6 /* Products */,
 				4473919BF3858DC111284837D59DA0FE /* Targets Support Files */,
@@ -222,18 +250,14 @@
 			path = "Target Support Files/Pods-AFModule_Example";
 			sourceTree = "<group>";
 		};
-		F3B9E48970979A31D07AF827CE9851B9 /* Support Files */ = {
+		EED466A0186BE183C0C37554EC2D03B4 /* AFTimer */ = {
 			isa = PBXGroup;
 			children = (
-				FAECF4195E35B7BE27B1173643F46570 /* AFModule.modulemap */,
-				B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */,
-				CB312028F365E94948474C8443943D18 /* AFModule-dummy.m */,
-				60440FFBAD6EA3656B0D3CA5ECEB6984 /* AFModule-Info.plist */,
-				E9B7CDA5546BEFB971149CDBD547AB4D /* AFModule-prefix.pch */,
-				8855494B8C2459F26C02D2C72E89124C /* AFModule-umbrella.h */,
+				6F71BA3225653ABF591A18A64EE0ACCC /* AFTimer.h */,
+				360C0B34A6FD3FCB9F71186478DEC08B /* AFTimer.m */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/AFModule";
+			name = AFTimer;
+			path = AFModule/Classes/AFTimer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,14 +271,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD0E492681E0C89073D3F9C4DD6D0491 /* Headers */ = {
+		C92480D5C3F1561A9C90AEB8D8DDDA1F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8AE4B91750AE9B8E434C1C8C269789 /* AFModule-umbrella.h in Headers */,
-				57A0719F898EED7BCF896AE869CEE57B /* AFTextModule.h in Headers */,
-				ACF238AF84B16201F269A697AAE2E35A /* UITextField+AFModule.h in Headers */,
-				64270F5064FA6AD0D60A8955721DF034 /* UITextView+AFModule.h in Headers */,
+				A1FB870918020C3AFC4F16B6D78A02AC /* AFModule-umbrella.h in Headers */,
+				70104EAD6C534A7989379119A7E42DE5 /* AFTextModule.h in Headers */,
+				B39169278FF4C54FFE7D99B5FCB9D39F /* AFTimer.h in Headers */,
+				92FE226CE5F93963EC776511C82E4B59 /* UITextField+AFModule.h in Headers */,
+				6C534AE1F1F551AC20B0636924A69672 /* UITextView+AFModule.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,12 +334,12 @@
 		};
 		FAA6B47D6EFE91C9D76DF686688FE8BA /* AFModule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9761AB19551F9735D68D9A86241F790E /* Build configuration list for PBXNativeTarget "AFModule" */;
+			buildConfigurationList = 252AE9145DBE7616A7CC84D35D1697EF /* Build configuration list for PBXNativeTarget "AFModule" */;
 			buildPhases = (
-				AD0E492681E0C89073D3F9C4DD6D0491 /* Headers */,
-				6882B0012D0A312D776CFC7985F85A87 /* Sources */,
-				0333782EFF7DBC363D8FEE812EF26073 /* Frameworks */,
-				7E097A30BDEB9DE603EFB9BA616485D0 /* Resources */,
+				C92480D5C3F1561A9C90AEB8D8DDDA1F /* Headers */,
+				093B4728F04790C7D98426F01B027AF2 /* Sources */,
+				C08C9DFA17F75F03556BBC880F9A53FA /* Frameworks */,
+				F70D2EFCA91D0B367B8A9B741C7A3350 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -361,14 +386,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7E097A30BDEB9DE603EFB9BA616485D0 /* Resources */ = {
+		C85F4A9FD098B6246B3D3248E2048972 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C85F4A9FD098B6246B3D3248E2048972 /* Resources */ = {
+		F70D2EFCA91D0B367B8A9B741C7A3350 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -378,22 +403,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		093B4728F04790C7D98426F01B027AF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72A911BAA71A8A28D2A694910A16BAB4 /* AFModule-dummy.m in Sources */,
+				5E3543C910CBA910A8DFE015BD05304E /* AFTextModule.m in Sources */,
+				1E38CAFF14B1A76DA580D35E277F73C3 /* AFTimer.m in Sources */,
+				A0D9AF1FC34D4DFB16F39E98DEDDD939 /* UITextField+AFModule.m in Sources */,
+				3A3BCCB7A9F25ECC684D79BD566C9B38 /* UITextView+AFModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1577038B9254E148670EFF897F87F3C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				36912B7646306F7F46346DA3D854A08D /* Pods-AFModule_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6882B0012D0A312D776CFC7985F85A87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				76EF4A5CE1F5FD45AA4409DF17CFBDAA /* AFModule-dummy.m in Sources */,
-				3C99412B30936D5EDBA7BD8C2CB0E884 /* AFTextModule.m in Sources */,
-				50939A4CA461EA8856181ED824777012 /* UITextField+AFModule.m in Sources */,
-				99115F49AA1FE791388E4494D91B3FB9 /* UITextView+AFModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,38 +449,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0FE95F403E04973486DCA65561CE9F04 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AFModule/AFModule-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AFModule/AFModule-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AFModule/AFModule.modulemap";
-				PRODUCT_MODULE_NAME = AFModule;
-				PRODUCT_NAME = AFModule;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		1B350DF95E6208EB151A13EF95CD4FB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B040CBC4210D8CB7DF9B5937221EB82 /* Pods-AFModule_Example.release.xcconfig */;
@@ -488,6 +482,37 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		245F36689FC583C4CE927BCF44932A93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02D996E102B97EA940805CF677C66AD2 /* AFModule.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AFModule/AFModule-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AFModule/AFModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AFModule/AFModule.modulemap";
+				PRODUCT_MODULE_NAME = AFModule;
+				PRODUCT_NAME = AFModule;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		47650675EFA8A678663A51CA5BA58583 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -713,9 +738,9 @@
 			};
 			name = Debug;
 		};
-		F19A98827A3CF4D80F45CEEA6EFB827F /* Debug */ = {
+		D3E8C5DB66CE2C857BB289115A1D28F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0D1905BE5F28AE79D4BDFDF8896B63D /* AFModule.xcconfig */;
+			baseConfigurationReference = 02D996E102B97EA940805CF677C66AD2 /* AFModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -739,10 +764,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -765,20 +791,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		252AE9145DBE7616A7CC84D35D1697EF /* Build configuration list for PBXNativeTarget "AFModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				245F36689FC583C4CE927BCF44932A93 /* Debug */,
+				D3E8C5DB66CE2C857BB289115A1D28F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
 				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9761AB19551F9735D68D9A86241F790E /* Build configuration list for PBXNativeTarget "AFModule" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F19A98827A3CF4D80F45CEEA6EFB827F /* Debug */,
-				0FE95F403E04973486DCA65561CE9F04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
