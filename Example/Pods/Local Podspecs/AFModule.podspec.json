@@ -12,11 +12,21 @@
     "Alfie": "418983798@qq.com"
   },
   "source": {
-    "git": "https://github.com/yxh418983798/AFModule.git",
+    "git": "https://github.com/CocoaPods/Specs.git",
     "tag": "1.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "AFModule/Classes/**/*.{h,m}"
+  "source_files": "AFModule/Classes/**/*.{h,m}",
+  "dependencies": {
+    "SDWebImage": [
+
+    ]
+  },
+  "resource_bundles": {
+    "AFModule": [
+      "AFModule/Assets/*"
+    ]
+  }
 }

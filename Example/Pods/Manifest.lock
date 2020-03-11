@@ -1,16 +1,25 @@
 PODS:
-  - AFModule (1.1.0)
+  - AFModule (1.1.0):
+    - SDWebImage
+  - SDWebImage (5.6.0):
+    - SDWebImage/Core (= 5.6.0)
+  - SDWebImage/Core (5.6.0)
 
 DEPENDENCIES:
   - AFModule (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
 
 EXTERNAL SOURCES:
   AFModule:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFModule: 84b1af464464e73b4afa1d0044eac795ace5f3dc
+  AFModule: 6f2e254457d130878a5dee26f30e71ce4c7cf096
+  SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
 
 PODFILE CHECKSUM: 58790d99acd46d8f3a8a8f42a9c6542ffb8fcbf9
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.8.4

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31429FAD24121BE000A026EE /* AFBrowserTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31429FAC24121BE000A026EE /* AFBrowserTestViewController.m */; };
 		31532016239A4218001C7942 /* AFTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31532015239A4218001C7942 /* AFTimerViewController.m */; };
 		3153201F239A5BF2001C7942 /* AFKVOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153201E239A5BF2001C7942 /* AFKVOViewController.m */; };
 		31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		198639AE55D34717E65DA3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AFModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31429FAB24121BE000A026EE /* AFBrowserTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFBrowserTestViewController.h; sourceTree = "<group>"; };
+		31429FAC24121BE000A026EE /* AFBrowserTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFBrowserTestViewController.m; sourceTree = "<group>"; };
 		31532014239A4218001C7942 /* AFTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTimerViewController.h; sourceTree = "<group>"; };
 		31532015239A4218001C7942 /* AFTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTimerViewController.m; sourceTree = "<group>"; };
 		3153201D239A5BF2001C7942 /* AFKVOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFKVOViewController.h; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				31532015239A4218001C7942 /* AFTimerViewController.m */,
 				3153201D239A5BF2001C7942 /* AFKVOViewController.h */,
 				3153201E239A5BF2001C7942 /* AFKVOViewController.m */,
+				31429FAB24121BE000A026EE /* AFBrowserTestViewController.h */,
+				31429FAC24121BE000A026EE /* AFBrowserTestViewController.m */,
 			);
 			name = "Example for AFModule";
 			path = AFModule;
@@ -262,6 +267,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = yxh418983798;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 5VUK5DCS5P;
+						ProvisioningStyle = Automatic;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -318,10 +327,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFModule/AFModule.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFModule.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -385,6 +396,7 @@
 				31532016239A4218001C7942 /* AFTimerViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* AFViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				31429FAD24121BE000A026EE /* AFBrowserTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,14 +524,17 @@
 			baseConfigurationReference = 3AD98ECD3754ABE63BC13B6D /* Pods-AFModule_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5VUK5DCS5P;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qyfriends.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -530,14 +545,17 @@
 			baseConfigurationReference = 92058E25F3248F65AB47D4B9 /* Pods-AFModule_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5VUK5DCS5P;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qyfriends.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

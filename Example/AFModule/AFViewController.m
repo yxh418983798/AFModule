@@ -10,6 +10,7 @@
 #import "AFTextModuleViewController.h"
 #import "AFTimerViewController.h"
 #import "AFKVOViewController.h"
+#import "AFBrowserTestViewController.h"
 
 @interface AFViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -33,6 +34,7 @@
     [self addDataWithText:@"AFTextModule" class:@"AFTextModuleViewController"];
     [self addDataWithText:@"AFTimer" class:@"AFTimerViewController"];
     [self addDataWithText:@"KVO" class:@"AFKVOViewController"];
+    [self addDataWithText:@"AFImageBrowser" class:@"AFBrowserTestViewController"];
     
 }
 

@@ -10,12 +10,18 @@
 #endif
 #endif
 
+#import "AFBrowserCollectionViewCell.h"
+#import "AFBrowserItem.h"
+#import "AFBrowserTransformer.h"
+#import "AFBrowserViewController.h"
+#import "AFPlayer.h"
+#import "AFPlayerBottomBar.h"
+#import "AFPlayerSlider.h"
 #import "AFTextModule.h"
 #import "UITextField+AFModule.h"
 #import "UITextView+AFModule.h"
 #import "AFTimer.h"
-#import "KVOModule.h"
-#import "NSObject+KVOModule.h"
+#import "UIView+AFExtension.h"
 
 FOUNDATION_EXPORT double AFModuleVersionNumber;
 FOUNDATION_EXPORT const unsigned char AFModuleVersionString[];
