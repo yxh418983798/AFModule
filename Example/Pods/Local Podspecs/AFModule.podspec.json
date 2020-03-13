@@ -1,6 +1,6 @@
 {
   "name": "AFModule",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "summary": "iOS 基础组件库",
   "description": "TODO: iOS 基础组件库",
   "homepage": "https://github.com/yxh418983798/AFModule",
@@ -12,13 +12,13 @@
     "Alfie": "418983798@qq.com"
   },
   "source": {
-    "git": "https://github.com/CocoaPods/Specs.git",
-    "tag": "1.1.0"
+    "git": "https://github.com/yxh418983798/AFModule.git",
+    "tag": "1.3.0",
+    "branch": "master"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "AFModule/Classes/**/*.{h,m}",
   "dependencies": {
     "SDWebImage": [
 
@@ -28,5 +28,70 @@
     "AFModule": [
       "AFModule/Assets/*"
     ]
-  }
+  },
+  "subspecs": [
+    {
+      "name": "AFAVCapture",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "dependencies": {
+        "AFModule/AFPlayer": [
+
+        ],
+        "AFModule/Category": [
+
+        ]
+      },
+      "source_files": "AFModule/AFAV{Capture,CaptureViewController,EditViewController,FocusView}.{h,m}"
+    },
+    {
+      "name": "AFBrowser",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "dependencies": {
+        "AFModule/AFPlayer": [
+
+        ],
+        "AFModule/Category": [
+
+        ]
+      },
+      "source_files": "AFModule/AFBrowser{CollectionViewCell,Item,Transformer,ViewController}.{h,m}"
+    },
+    {
+      "name": "AFPlayer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "dependencies": {
+        "AFModule/Category": [
+
+        ]
+      },
+      "source_files": "AFModule/AF{Player,PlayerBottomBar,PlayerSlider}.{h,m}"
+    },
+    {
+      "name": "AFTextModule",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "source_files": "AFModule/AFText{Module,Field+AFModule,View+AFModule}.{h,m}"
+    },
+    {
+      "name": "AFTimer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "source_files": "AFModule/AFTimer.{h,m}"
+    },
+    {
+      "name": "Category",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "source_files": "AFModule/UIView+AFExtension.{h,m}"
+    }
+  ]
 }

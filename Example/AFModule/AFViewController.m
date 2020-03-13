@@ -11,6 +11,8 @@
 #import "AFTimerViewController.h"
 #import "AFKVOViewController.h"
 #import "AFBrowserTestViewController.h"
+#import "AFAVCaptureViewController.h"
+#import "AFAVEditViewController.h"
 
 @interface AFViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -35,7 +37,8 @@
     [self addDataWithText:@"AFTimer" class:@"AFTimerViewController"];
     [self addDataWithText:@"KVO" class:@"AFKVOViewController"];
     [self addDataWithText:@"AFImageBrowser" class:@"AFBrowserTestViewController"];
-    
+    [self addDataWithText:@"AFAVCapture" class:@"AFAVEditViewController"];
+
 }
 
 

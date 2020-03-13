@@ -11,7 +11,6 @@
 		31532016239A4218001C7942 /* AFTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31532015239A4218001C7942 /* AFTimerViewController.m */; };
 		3153201F239A5BF2001C7942 /* AFKVOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153201E239A5BF2001C7942 /* AFKVOViewController.m */; };
 		31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */; };
-		52856DC215E21407A0E44A98 /* Pods_AFModule_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -27,7 +26,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A1BED9D315F6E6865163065F /* Pods_AFModule_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521E53A2437B91BEA129198A /* Pods_AFModule_Tests.framework */; };
+		882160B498A1BDE9EEF8B3AC /* libPods-AFModule_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B58260B8A5D26355D451FE /* libPods-AFModule_Tests.a */; };
+		E0CCF315EFB1232F8A804337 /* libPods-AFModule_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 303624BAFDADB75F9FCC32E1 /* libPods-AFModule_Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		198639AE55D34717E65DA3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AFModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		303624BAFDADB75F9FCC32E1 /* libPods-AFModule_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AFModule_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31429FAB24121BE000A026EE /* AFBrowserTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFBrowserTestViewController.h; sourceTree = "<group>"; };
 		31429FAC24121BE000A026EE /* AFBrowserTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFBrowserTestViewController.m; sourceTree = "<group>"; };
 		31532014239A4218001C7942 /* AFTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTimerViewController.h; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		31BB51A0238F7A220003D2A1 /* AFTextModuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTextModuleViewController.h; sourceTree = "<group>"; };
 		31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTextModuleViewController.m; sourceTree = "<group>"; };
 		3AD98ECD3754ABE63BC13B6D /* Pods-AFModule_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Example.debug.xcconfig"; path = "Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		521E53A2437B91BEA129198A /* Pods_AFModule_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AFModule_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44B58260B8A5D26355D451FE /* libPods-AFModule_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AFModule_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* AFModule_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFModule_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,7 +89,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				52856DC215E21407A0E44A98 /* Pods_AFModule_Example.framework in Frameworks */,
+				E0CCF315EFB1232F8A804337 /* libPods-AFModule_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				A1BED9D315F6E6865163065F /* Pods_AFModule_Tests.framework in Frameworks */,
+				882160B498A1BDE9EEF8B3AC /* libPods-AFModule_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +146,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				2BE0C82D9BDF2A19AE4AA6DA /* Pods_AFModule_Example.framework */,
-				521E53A2437B91BEA129198A /* Pods_AFModule_Tests.framework */,
+				303624BAFDADB75F9FCC32E1 /* libPods-AFModule_Example.a */,
+				44B58260B8A5D26355D451FE /* libPods-AFModule_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				796B515730B04A7BB823D98A /* [CP] Embed Pods Frameworks */,
+				4A896A4B3662DCE43B740B9C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -319,24 +319,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		796B515730B04A7BB823D98A /* [CP] Embed Pods Frameworks */ = {
+		4A896A4B3662DCE43B740B9C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFModule/AFModule.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AFModule/AFModule.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFModule.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AFModule.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8EB487F20F2FF348AC9190E0 /* [CP] Check Pods Manifest.lock */ = {
@@ -530,7 +528,7 @@
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.qyfriends.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -551,7 +549,7 @@
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.qyfriends.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";

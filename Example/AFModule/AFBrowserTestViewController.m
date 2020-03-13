@@ -64,25 +64,23 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     AFBrowserViewController *browserVc = [AFBrowserViewController new];
     browserVc.index = indexPath.row;
-//    browserVc.browserType = AFBrowserTypeDelete;
-//    browserVc.pageControlType = AFPageControlTypeText;
+    // 浏览类型，设置成图片视频可删除，如果没有删除操作，则不需要设置
+    browserVc.browserType = AFBrowserTypeDelete;
+    // PageControl 默认不展示，如果要展示，需要设置
+    browserVc.pageControlType = AFPageControlTypeText;
+    // 设置代理
     browserVc.delegate = self;
-    
-//    [browserVc addItem:[AFBrowserItem browserItem:@"http://img.qiyejiaoyou.com/99fc5f5b18d87584a9929fa195d1df17" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" type:(AFBrowserItemTypeImage) identifier:nil]];
-//    [browserVc addItem:[AFBrowserItem browserItem:@"http://img.qiyejiaoyou.com/99fc5f5b18d87584a9929fa195d1df17" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" type:(AFBrowserItemTypeImage) identifier:nil]];
-//    [browserVc addItem:[AFBrowserItem browserItem:@"http://img.qiyejiaoyou.com/99fc5f5b18d87584a9929fa195d1df17" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" type:(AFBrowserItemTypeImage) identifier:nil]];
-//    [browserVc addItem:[AFBrowserItem browserItem:@"http://img.qiyejiaoyou.com/99fc5f5b18d87584a9929fa195d1df17" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" type:(AFBrowserItemTypeImage) identifier:nil]];
-//    [browserVc addItem:[AFBrowserItem browserItem:@"http://img.qiyejiaoyou.com/99fc5f5b18d87584a9929fa195d1df17" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" type:(AFBrowserItemTypeImage) identifier:nil]];
-    
+    // 添加图片数据
     [browserVc addItem:[AFBrowserItem imageItem:@"http://img.qiyejiaoyou.com/99fc5f5b18d87584a9929fa195d1df17" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" identifier:nil]];
-
+    // 添加视频数据
     [browserVc addItem:[AFBrowserItem videoItem:@"http://vid.qiyejiaoyou.com/fc1521ccd505da5154874b85149295af" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" duration:0 identifier:nil]];
     [browserVc addItem:[AFBrowserItem videoItem:@"http://vid.qiyejiaoyou.com/fc1521ccd505da5154874b85149295af" coverImage:@"http://img.qiyejiaoyou.com/7ffab8f32c94c4a5320d6e232a0cd8b8" duration:0 identifier:nil]];
+    // 跳转
     [self presentViewController:browserVc animated:YES completion:nil];
     
-
 }
 
 
@@ -93,10 +91,12 @@
 
 
 #pragma mark -- 浏览图片 AFBrowserSourceTransformerDelegate
+// 代理返回一个转场过度的imageView
 - (UIImageView *)browser:(AFBrowserViewController *)browser viewForTransitionAtIndex:(NSInteger)index {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     return [cell viewWithTag:2];
 }
+
 
 
 @end
