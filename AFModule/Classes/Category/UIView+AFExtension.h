@@ -7,7 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
+#define Navigation_H        ([UIApplication sharedApplication].statusBarFrame.size.height + 44.f)
+
 
 @interface UIView (AFExtension)
 
@@ -28,4 +30,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
+

@@ -50,7 +50,6 @@
 
 
 @implementation AFBrowserViewController
-#define Navigation_H        ([UIApplication sharedApplication].statusBarFrame.size.height + 44.f)
 static const CGFloat lineSpacing = 0.f; //间隔
 
 #pragma mark - 生命周期
@@ -382,9 +381,9 @@ static const CGFloat lineSpacing = 0.f; //间隔
     }
     
     AFBrowserCollectionViewCell *cell = (AFBrowserCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.index inSection:0]];
-    [cell.player pause];
+    [cell.player stop];
     if (self.items.count == 1) {
-        [self.items removeObjectAtIndex:0];
+        self.transformer.userDefaultAnimation = YES;
         [self dismissBtnAction];
         return;
     }
@@ -417,15 +416,27 @@ static const CGFloat lineSpacing = 0.f; //间隔
 }
 
 - (UIImageView *)transitionViewForSourceController {
+    
+    if (![self.delegate respondsToSelector:@selector(browser:viewForTransitionAtIndex:)]) return nil;
     UIView *transitionView = [self.delegate browser:self viewForTransitionAtIndex:self.index];
     if (!transitionView) {
         transitionView = [self.delegate browser:self viewForTransitionAtIndex:MIN(self.originalIndex, self.items.count - 1)];
     }
-    return (UIImageView *)transitionView;
+    if ([transitionView isKindOfClass:UIImageView.class]) {
+        return (UIImageView *)transitionView;
+    }
+    if ([self.delegate respondsToSelector:@selector(browser:imageForTransitionAtIndex:)]) {
+        return [[UIImageView alloc] initWithImage:[self.delegate browser:self imageForTransitionAtIndex:self.index]];
+    }
+    return nil;
 }
 
 - (CGRect)frameForSourceController {
-    UIView *transitionView = self.transitionViewForSourceController;
+
+    UIView *transitionView = [self.delegate browser:self viewForTransitionAtIndex:self.index];
+    if (!transitionView) {
+        transitionView = [self.delegate browser:self viewForTransitionAtIndex:MIN(self.originalIndex, self.items.count - 1)];
+    }
     UIView *toView;
     for (UIView *view = transitionView; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];

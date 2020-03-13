@@ -22,7 +22,7 @@ pod 'AFModule'
 
 ## Author
 
-yxh418983798, yxh418983798@dingtalk.com
+Alfie, 418983798@qq.com
 
 ## License
 

@@ -11,10 +11,7 @@
 #import "UIView+AFExtension.h"
 #import "UIImageView+WebCache.h"
 
-
 @interface AFBrowserScrollView: UIScrollView
-
-
 @end
 
 @implementation AFBrowserScrollView
@@ -94,7 +91,6 @@
     }
     return self;
 }
-
 
 
 #pragma mark - UI

@@ -36,8 +36,6 @@
 //绑定数据
 - (void)attachItem:(id)item atIndexPath:(NSIndexPath *)indexPath;
 
-//滑动时 更新视频状态
-- (void)updateVideoStatus;
 
 - (void)stopPlayer;
 

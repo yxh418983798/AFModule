@@ -90,6 +90,19 @@
     
 #pragma mark - present
     if (self.isPresenting) {
+        if (![self.sourceDelegate respondsToSelector:@selector(transitionViewForSourceController)] || ![self.sourceDelegate transitionViewForSourceController] || self.userDefaultAnimation) {
+
+            toView.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
+            [containerView addSubview:toView];
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:0 animations:^{
+                toView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
+            } completion:^(BOOL finished) {
+                [transitionContext completeTransition:YES];
+            }];
+            return;
+        }
+
+        
         self.sourceVc = fromVC;
         self.presentedVc = toVC;
         
@@ -109,7 +122,7 @@
         self.backGroundView.alpha = 0;
         [containerView addSubview:self.backGroundView];
         
-        UIImageView *transitionView = [self.sourceDelegate transitionViewForSourceController];
+        UIImageView *transitionView = [self.sourceDelegate transitionViewForSourceController];    
         self.trasitionView = [[UIView alloc] initWithFrame:self.sourceFrame];
         self.trasitionView.layer.contents = (__bridge id)transitionView.image.CGImage;
         [containerView addSubview:self.trasitionView];
@@ -144,9 +157,6 @@
     
     else {
         
-        UIImageView *sourceView = [self.sourceDelegate transitionViewForSourceController];
-        sourceView.hidden = self.hideSourceViewWhenTransition;
-        
         UIView *snapView;
         if (@available(iOS 13.0, *)) {
             snapView = [toView snapshotViewAfterScreenUpdates:YES];
@@ -158,6 +168,20 @@
             fromView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
             [containerView addSubview:fromView];
         }
+        
+        if (![self.sourceDelegate respondsToSelector:@selector(transitionViewForSourceController)] || ![self.sourceDelegate transitionViewForSourceController] || self.userDefaultAnimation) {
+            fromView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
+            [containerView addSubview:fromView];
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:0 animations:^{
+                fromView.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
+            } completion:^(BOOL finished) {
+                [transitionContext completeTransition:YES];
+            }];
+            return;
+        }
+
+        UIImageView *sourceView = [self.sourceDelegate transitionViewForSourceController];
+        sourceView.hidden = self.hideSourceViewWhenTransition;
         
         self.backGroundView = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height))];
         self.backGroundView.backgroundColor = UIColor.blackColor;

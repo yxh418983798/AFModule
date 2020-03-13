@@ -60,6 +60,9 @@
 /** 推出控制器代理 */
 @property (weak, nonatomic) id <AFBrowserPresentedTransformerDelegate>  presentedDelegate;
 
+/** 是否使用系统的默认转场 */
+@property (nonatomic, assign) BOOL            userDefaultAnimation;
+
 @end
 
 

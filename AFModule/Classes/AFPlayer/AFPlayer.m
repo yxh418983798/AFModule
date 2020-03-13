@@ -136,7 +136,7 @@
     if (!_playBtn) {
         _playBtn = [UIButton new];
         NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:self.class] URLForResource:@"AFModule" withExtension:@"bundle"]];
-        [_playBtn setBackgroundImage:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"af_player_play@2x" ofType:@".png"]] forState:(UIControlStateNormal)];
+        [_playBtn setBackgroundImage:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"af_player_play@3x" ofType:@".png"]] forState:(UIControlStateNormal)];
         [_playBtn addTarget:self action:@selector(play) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _playBtn;
@@ -168,7 +168,7 @@
 - (AVPlayerLayer *)playerLayer {
     if (!_playerLayer) {
         _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-        _playerLayer.videoGravity = AVLayerVideoGravityResize;
+        _playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
         _playerLayer.masksToBounds= YES;
     }
     return _playerLayer;
@@ -270,7 +270,7 @@
     [self.player pause];
     if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
         self.playBtn.hidden = NO;
-        self.coverImgView.hidden = YES;
+        self.coverImgView.hidden = self.progress < 1;
     } else {
         self.coverImgView.hidden = NO;
         [self.activityView startAnimating];
@@ -332,7 +332,6 @@
 #pragma mark - SliderAction
 - (void)sliderTouchDownAction:(UISlider *)sender{
     self.bottomBar.isSliderTouch = YES;
-    NSLog(@"-------------------------- 123 --------------------------");
 }
 
 - (void)sliderValueChangedAction:(UISlider *)sender {

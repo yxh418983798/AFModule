@@ -42,11 +42,18 @@ typedef NS_ENUM(NSUInteger, AFBrowserDirection){
 @protocol AFBrowserDelegate <NSObject>
 
 /**
- * 转场View
+ * 转场的View，如果返回的是ImageView，则只需要实现该方法就能实现转场动画
+ * 如果不是ImageView，请实现imageForTransitionAtIndex返回一张图片
  */
-- (UIImageView *)browser:(AFBrowserViewController *)browser viewForTransitionAtIndex:(NSInteger)index;
+- (UIView *)browser:(AFBrowserViewController *)browser viewForTransitionAtIndex:(NSInteger)index;
 
 @optional;
+
+/**
+ * 转场图片
+ */
+- (UIImage *)browser:(AFBrowserViewController *)browser imageForTransitionAtIndex:(NSInteger)index;
+
 
 /**
  * 删除照片的回调
