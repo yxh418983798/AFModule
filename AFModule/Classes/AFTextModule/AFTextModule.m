@@ -206,6 +206,20 @@
     return YES;
 }
 
+- (void)textFieldDidChange:(UITextField *)textField {
+    
+    textField.module.placeholderLb.hidden = textField.text.length;
+    if (textField.module.maxLenght > 0) {
+        UITextRange *selectedRange = textField.markedTextRange;
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (selectedRange && position) return;
+        NSString *text = textField.text;
+        NSInteger existNum = [self displayLengthWithString:text];
+        if (existNum > textField.module.maxLenght) {
+            textField.text = [text substringToIndex:textField.module.maxLenght];
+        }
+    }
+}
 
 - (BOOL)afperform_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textView:shouldChangeTextInRange:replacementText:", NSStringFromClass(self.class)]);

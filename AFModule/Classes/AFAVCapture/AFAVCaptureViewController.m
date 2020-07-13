@@ -251,7 +251,7 @@
 
 #pragma mark - 轻触拍照
 - (void)captureImageAction:(UITapGestureRecognizer *)tap {
-    if (self.captureOption == AFCaptureTypeAV) return;
+    if (self.captureOption == AFAVCaptureOptionAV) return;
     [self.avCapture startCaptureWithOutputFilePath:nil captureType:(AFCaptureTypeImage)];
 }
 

@@ -19,6 +19,7 @@
   "platforms": {
     "ios": "8.0"
   },
+  "source_files": "AFModule/Classes/**/*.{h,m}",
   "dependencies": {
     "SDWebImage": [
 
@@ -28,70 +29,5 @@
     "AFModule": [
       "AFModule/Assets/*"
     ]
-  },
-  "subspecs": [
-    {
-      "name": "AFAVCapture",
-      "platforms": {
-        "ios": "8.0"
-      },
-      "dependencies": {
-        "AFModule/AFPlayer": [
-
-        ],
-        "AFModule/Category": [
-
-        ]
-      },
-      "source_files": "AFModule/AFAV{Capture,CaptureViewController,EditViewController,FocusView}.{h,m}"
-    },
-    {
-      "name": "AFBrowser",
-      "platforms": {
-        "ios": "8.0"
-      },
-      "dependencies": {
-        "AFModule/AFPlayer": [
-
-        ],
-        "AFModule/Category": [
-
-        ]
-      },
-      "source_files": "AFModule/AFBrowser{CollectionViewCell,Item,Transformer,ViewController}.{h,m}"
-    },
-    {
-      "name": "AFPlayer",
-      "platforms": {
-        "ios": "8.0"
-      },
-      "dependencies": {
-        "AFModule/Category": [
-
-        ]
-      },
-      "source_files": "AFModule/AF{Player,PlayerBottomBar,PlayerSlider}.{h,m}"
-    },
-    {
-      "name": "AFTextModule",
-      "platforms": {
-        "ios": "8.0"
-      },
-      "source_files": "AFModule/AFText{Module,Field+AFModule,View+AFModule}.{h,m}"
-    },
-    {
-      "name": "AFTimer",
-      "platforms": {
-        "ios": "8.0"
-      },
-      "source_files": "AFModule/AFTimer.{h,m}"
-    },
-    {
-      "name": "Category",
-      "platforms": {
-        "ios": "8.0"
-      },
-      "source_files": "AFModule/UIView+AFExtension.{h,m}"
-    }
-  ]
+  }
 }

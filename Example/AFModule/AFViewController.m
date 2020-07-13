@@ -37,8 +37,21 @@
     [self addDataWithText:@"AFTimer" class:@"AFTimerViewController"];
     [self addDataWithText:@"KVO" class:@"AFKVOViewController"];
     [self addDataWithText:@"AFImageBrowser" class:@"AFBrowserTestViewController"];
-    [self addDataWithText:@"AFAVCapture" class:@"AFAVEditViewController"];
+    [self addDataWithText:@"AFAVCapture" class:@"AFAVCaptureViewController"];
 
+    
+//    AFAVCaptureViewController *avCaptureVC = [AFAVCaptureViewController new];
+//    // 设置代理
+//    avCaptureVC.delegate = self;
+//    // 设置拍摄行为，默认是同时支持摄像和拍照，如果要求只能摄像，则设置如下
+//    avCaptureVC.captureOption = AFAVCaptureOptionAV;
+//    // 设置确认图片视频后，自动保存到本地相册
+//    avCaptureVC.saveToAlbumEnable = YES;
+//    // 设置摄像的最长时间为100秒，默认是15秒
+//    avCaptureVC.maxDuration = 100;
+//    // 跳转
+//    [self presentViewController:avCaptureVC animated:YES completion:nil];
+    
 }
 
 

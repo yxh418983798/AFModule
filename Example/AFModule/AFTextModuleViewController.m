@@ -32,7 +32,7 @@
     _textField.textColor = UIColor.blackColor;
     _textField.module.maxLenght = 3;
     // 设置 输入的限制类型
-    _textField.module.restrictOption = AFInputRestrictionOptionNumber;
+//    _textField.module.restrictOption = AFInputRestrictionOptionNumber;
     // 超出输入限制 的回调
     _textField.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
         if (restriction == AFInputRestrictionOptionMaxLength) {
@@ -54,7 +54,7 @@
     //展示剩余可输入字符数量的提示
     _textView.module.lenghtTipEnable = YES;
     // 设置 输入的限制类型: 禁止输入中文  禁止输入表情
-    _textView.module.restrictOption = AFInputRestrictionOptionNotChinese | AFInputRestrictionOptionNotEmoji;
+//    _textView.module.restrictOption = AFInputRestrictionOptionNotChinese | AFInputRestrictionOptionNotEmoji;
     // 超出输入限制 的回调
     _textView.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
         
@@ -68,8 +68,6 @@
     };
     [self.view addSubview:_textView];
 }
-
-
 
 
 @end

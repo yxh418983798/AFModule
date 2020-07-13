@@ -82,6 +82,7 @@ void AFTextFieldMethodSelector() {}
         textModule = [AFTextModule new];
         textModule.target = self;
         objc_setAssociatedObject(self, AFTextModuleKey, textModule, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self addTarget:textModule action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         if (!self.delegate) {
             self.delegate = textModule;
         }
