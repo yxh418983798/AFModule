@@ -1,5 +1,5 @@
 PODS:
-  - AFModule (1.3.0):
+  - AFModule (1.1.1):
     - SDWebImage
   - SDWebImage (5.6.0):
     - SDWebImage/Core (= 5.6.0)
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFModule: 5bcce41db14400e8fd2606cd16ffcf128b28e420
+  AFModule: a3fad620421e2d18458e570b0c116e3b42a3ca08
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
 
 PODFILE CHECKSUM: 9477110d5de471250df563492353bedbfad92876

@@ -10,9 +10,9 @@
 #import "AFTextModuleViewController.h"
 #import "AFTimerViewController.h"
 #import "AFKVOViewController.h"
-#import "AFBrowserTestViewController.h"
-#import "AFAVCaptureViewController.h"
-#import "AFAVEditViewController.h"
+//#import "AFBrowserTestViewController.h"
+//#import "AFAVCaptureViewController.h"
+//#import "AFAVEditViewController.h"
 
 @interface AFViewController () <UITableViewDelegate, UITableViewDataSource>
 

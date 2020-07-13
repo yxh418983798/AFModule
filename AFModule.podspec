@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/CocoaPods/Specs.git', :tag => s.version.to_s, :branch => 'trunk'}
   s.source           = { :git => 'https://github.com/yxh418983798/AFModule.git', :tag => s.version.to_s, :branch => 'master'}
   s.ios.deployment_target = '8.0'
-  s.source_files = 'AFModule/Classes/**/*.{h,m}'
+  s.source_files = 'AFModule/Classes/{AFTimer,AFTextModule}/*.{h,m}'
 #  s.source_files = 'AFModule/AFModule.h'
   s.dependency 'SDWebImage'
-  s.resource_bundles = {
-   'AFModule' => ['AFModule/Assets/*']
-  }
+#  s.resource_bundles = {
+#   'AFModule' => ['AFModule/Assets/*']
+#  }
   
 #  s.subspec 'AFAVCapture' do |ss|
 #    ss.ios.deployment_target = '8.0'

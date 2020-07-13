@@ -1,1 +1,0 @@
-../../../../../AFModule/Classes/AFBrowser/AFBrowserCollectionViewCell.h
