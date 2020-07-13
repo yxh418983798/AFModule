@@ -208,7 +208,6 @@
 
 - (void)textFieldDidChange:(UITextField *)textField {
     
-    textField.module.placeholderLb.hidden = textField.text.length;
     if (textField.module.maxLenght > 0) {
         UITextRange *selectedRange = textField.markedTextRange;
         UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];

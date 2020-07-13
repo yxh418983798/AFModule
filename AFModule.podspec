@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '优化UITextFiled 长度限制的计算'
+  s.description      = '修复UITextFiled Placeholder的bug'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
