@@ -30,6 +30,57 @@
 {
     [super viewDidLoad];
 
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSLog(@"-------------------------- 222 --------------------------");
+//
+//    });
+    
+    NSLog(@"-------------------------- 1 --------------------------");
+    dispatch_queue_t queue = dispatch_queue_create("qqqq", DISPATCH_QUEUE_CONCURRENT);
+    for (int i = 0; i < 10; i++) {
+        dispatch_async(queue, ^{
+            NSLog(@" %d -- %@", i, NSThread.currentThread);
+        });
+    }
+    dispatch_barrier_async(queue, ^{
+        NSLog(@" 卡主了 -- %@", NSThread.currentThread);
+    });
+    for (int i = 10; i < 20; i++) {
+        dispatch_async(queue, ^{
+            NSLog(@" %d -- %@ ", i, NSThread.currentThread);
+        });
+    }
+    
+    
+    dispatch_async(queue, ^{
+        NSLog(@"-------------------------- 2 --------------------------");
+    });
+    NSLog(@"-------------------------- 3 --------------------------");
+    
+    dispatch_sync(queue, ^{
+        NSLog(@"-------------------------- 4 --------------------------");
+        dispatch_async(queue, ^{
+            NSLog(@"-------------------------- 5 --------------------------");
+        });
+    });
+    NSLog(@"-------------------------- 6 --------------------------");
+
+    dispatch_async(queue, ^{
+        NSLog(@"-------------------------- 7 --------------------------");
+        dispatch_sync(queue, ^{
+            NSLog(@"-------------------------- 8 --------------------------");
+        });
+    });
+    NSLog(@"-------------------------- 9 --------------------------");
+
+    
+//
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+//        NSLog(@"-------------------------- 333 --------------------------");
+//    });
+//    NSLog(@"-------------------------- 444 --------------------------");
+
     [self configurationSubviews];
     
     self.dataSource = [NSMutableArray array];
@@ -38,7 +89,8 @@
     [self addDataWithText:@"KVO" class:@"AFKVOViewController"];
     [self addDataWithText:@"AFImageBrowser" class:@"AFBrowserTestViewController"];
     [self addDataWithText:@"AFAVCapture" class:@"AFAVCaptureViewController"];
-
+    [self addDataWithText:@"AFNavigationTitleViewController" class:@"AFNavigationTitleViewController"];
+    
     
 //    AFAVCaptureViewController *avCaptureVC = [AFAVCaptureViewController new];
 //    // 设置代理

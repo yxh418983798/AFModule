@@ -10,6 +10,8 @@
 		31429FAD24121BE000A026EE /* AFBrowserTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31429FAC24121BE000A026EE /* AFBrowserTestViewController.m */; };
 		31532016239A4218001C7942 /* AFTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31532015239A4218001C7942 /* AFTimerViewController.m */; };
 		3153201F239A5BF2001C7942 /* AFKVOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153201E239A5BF2001C7942 /* AFKVOViewController.m */; };
+		316C525F24C0540900AF2EBB /* AFNavigationTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316C525E24C0540900AF2EBB /* AFNavigationTitleViewController.m */; };
+		319DB4FF24D2B1B800C6FAF2 /* detection.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 319DB4FE24D2B1B800C6FAF2 /* detection.aiff */; };
 		31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -49,6 +51,9 @@
 		31532015239A4218001C7942 /* AFTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTimerViewController.m; sourceTree = "<group>"; };
 		3153201D239A5BF2001C7942 /* AFKVOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFKVOViewController.h; sourceTree = "<group>"; };
 		3153201E239A5BF2001C7942 /* AFKVOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFKVOViewController.m; sourceTree = "<group>"; };
+		316C525D24C0540900AF2EBB /* AFNavigationTitleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFNavigationTitleViewController.h; sourceTree = "<group>"; };
+		316C525E24C0540900AF2EBB /* AFNavigationTitleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFNavigationTitleViewController.m; sourceTree = "<group>"; };
+		319DB4FE24D2B1B800C6FAF2 /* detection.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = detection.aiff; sourceTree = "<group>"; };
 		31BB51A0238F7A220003D2A1 /* AFTextModuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFTextModuleViewController.h; sourceTree = "<group>"; };
 		31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFTextModuleViewController.m; sourceTree = "<group>"; };
 		3AD98ECD3754ABE63BC13B6D /* Pods-AFModule_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFModule_Example.debug.xcconfig"; path = "Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				6003F59C195388D20070C39A /* AFAppDelegate.h */,
+				319DB4FE24D2B1B800C6FAF2 /* detection.aiff */,
 				6003F59D195388D20070C39A /* AFAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* AFViewController.h */,
@@ -171,6 +177,8 @@
 				3153201E239A5BF2001C7942 /* AFKVOViewController.m */,
 				31429FAB24121BE000A026EE /* AFBrowserTestViewController.h */,
 				31429FAC24121BE000A026EE /* AFBrowserTestViewController.m */,
+				316C525D24C0540900AF2EBB /* AFNavigationTitleViewController.h */,
+				316C525E24C0540900AF2EBB /* AFNavigationTitleViewController.m */,
 			);
 			name = "Example for AFModule";
 			path = AFModule;
@@ -267,7 +275,7 @@
 				ORGANIZATIONNAME = yxh418983798;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 5VUK5DCS5P;
+						DevelopmentTeam = 7NB4473WK6;
 						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
@@ -301,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				319DB4FF24D2B1B800C6FAF2 /* detection.aiff in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -373,6 +382,7 @@
 				31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */,
 				6003F59E195388D20070C39A /* AFAppDelegate.m in Sources */,
 				31532016239A4218001C7942 /* AFTimerViewController.m in Sources */,
+				316C525F24C0540900AF2EBB /* AFNavigationTitleViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* AFViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				31429FAD24121BE000A026EE /* AFBrowserTestViewController.m in Sources */,
@@ -504,14 +514,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5VUK5DCS5P;
+				DEVELOPMENT_TEAM = 7NB4473WK6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qyfriends.www;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mostone.qiye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -525,14 +535,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5VUK5DCS5P;
+				DEVELOPMENT_TEAM = 7NB4473WK6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qyfriends.www;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mostone.qiye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

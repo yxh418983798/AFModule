@@ -8,8 +8,9 @@
 
 #import "AFTimerViewController.h"
 #import "AFTimer.h"
+#import "AFDeviceObserver.h"
 
-@interface AFTimerViewController ()
+@interface AFTimerViewController () <AFDeviceDelegate>
 
 /** 定时器 */
 @property (strong, nonatomic) AFTimer            *timer;
@@ -21,8 +22,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _timer = [AFTimer timerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES forMode:(NSRunLoopCommonModes)];
-    [_timer fire];
+    __weak typeof (self) weakSelf = self;
+
+    [AFDeviceObserver getMuteStatus:^(BOOL isMute) {
+        NSLog(@"-------------------------- 只检测一次啊：%d --------------------------", isMute);
+        [AFDeviceObserver addMuteObserver:self];
+    }];
+    
+    [AFDeviceObserver addCallObserver:self];
+//    _timer = [AFTimer timerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES forMode:(NSRunLoopCommonModes)];
+//    [_timer fire];
     
 }
 
@@ -34,6 +43,15 @@
 
 - (void)dealloc {
     NSLog(@"-------------------------- dealloc --------------------------");
+}
+
+/// 状态改变的回调
+- (void)deviceDidChangeMuteStatus:(BOOL)isMute {
+    NSLog(@"-------------------------- 代理回调：%d --------------------------", isMute);
+}
+
+- (void)deviceDidChangeCallStatu:(NSString *)callStatus {
+    NSLog(@"--------------------------来电：%@ --------------------------", callStatus);
 }
 
 

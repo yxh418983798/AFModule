@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger, AFTimerOption) {
 
 #pragma mark -- 代理执行方法
 - (void)timerAction {
-    if (self.target) {
+    if (self.isValid && self.target) {
         [self.target performSelector:self.selector withObject:self];
     } else {
         [self invalidate];
