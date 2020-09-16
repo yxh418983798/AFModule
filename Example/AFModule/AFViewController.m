@@ -38,20 +38,48 @@
     
     NSLog(@"-------------------------- 1 --------------------------");
     dispatch_queue_t queue = dispatch_queue_create("qqqq", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t squeue = dispatch_queue_create("squeue", DISPATCH_QUEUE_SERIAL);
+
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//       NSLog(@"-------------------------- 2222 --------------------------");
+//        dispatch_sync(squeue, ^{
+//            NSLog(@"-------------------------- 3333 --------------------------");
+//        });
+//    });
+//    NSLog(@"-------------------------- 44444 --------------------------");
+//    return;
+    
+//    dispatch_async(queue, ^{
+        for (int i = 0; i < 100; i++) {
+                dispatch_async(queue, ^{
+                    NSLog(@" %d -- %@", i, NSThread.currentThread);
+                });
+            }
+        //    dispatch_barrier_async(queue, ^{
+        //        NSLog(@" 卡主了 -- %@", NSThread.currentThread);
+        //    });
+            for (int i = 100; i < 200; i++) {
+                dispatch_async(squeue, ^{
+                    NSLog(@" %d -- %@ ", i, NSThread.currentThread);
+                });
+            }
+//    });
+    
+    return;
     for (int i = 0; i < 10; i++) {
         dispatch_async(queue, ^{
             NSLog(@" %d -- %@", i, NSThread.currentThread);
         });
     }
-    dispatch_barrier_async(queue, ^{
-        NSLog(@" 卡主了 -- %@", NSThread.currentThread);
-    });
+//    dispatch_barrier_async(queue, ^{
+//        NSLog(@" 卡主了 -- %@", NSThread.currentThread);
+//    });
     for (int i = 10; i < 20; i++) {
         dispatch_async(queue, ^{
             NSLog(@" %d -- %@ ", i, NSThread.currentThread);
         });
     }
-    
+    return;
     
     dispatch_async(queue, ^{
         NSLog(@"-------------------------- 2 --------------------------");

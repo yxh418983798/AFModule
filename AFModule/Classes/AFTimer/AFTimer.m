@@ -175,8 +175,10 @@ typedef NS_ENUM(NSInteger, AFTimerOption) {
             break;
             
         case AFTimerOptionGCD: {
-            dispatch_cancel(self.gcd_timer);
-            self.gcd_timer = nil;
+            if (self.gcd_timer) {
+                dispatch_cancel(self.gcd_timer);
+                self.gcd_timer = nil;
+            }
         }
             break;
             
