@@ -41,6 +41,10 @@ typedef void(^ObserverCompletion)(BOOL isMute);
 
 @implementation AFDeviceObserver
 
++ (void)initialize {
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(aVAudioSessionRouteChangeNotification:) name:AVAudioSessionRouteChangeNotification object:nil];
+}
+
 #pragma mark - 单例
 + (instancetype)shareObserver {
     static AFDeviceObserver *observer;
@@ -236,6 +240,43 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
 }
 
 - (void)deviceDidChangeCallStatu:(NSString *)callStatus {}
+
+
+#pragma mark - 是否使用耳机
+static NSNumber *_usingHeadphones;
++ (BOOL)usingHeadphones {
+    if (!_usingHeadphones) {
+        AVAudioSessionRouteDescription *currentRoute = AVAudioSession.sharedInstance.currentRoute;
+        for (AVAudioSessionPortDescription *output in currentRoute.outputs) {
+            if ([output.portType isEqualToString:AVAudioSessionPortHeadphones] || [output.portType isEqualToString:AVAudioSessionPortBluetoothA2DP] || [output.portType isEqualToString:AVAudioSessionPortBluetoothLE]) {
+                _usingHeadphones = @(YES);
+              }
+        }
+    }
+    return _usingHeadphones.boolValue;
+}
+
++ (void)setUsingHeadphones:(BOOL)usingHeadphones {
+    _usingHeadphones = @(usingHeadphones);
+}
+
+#pragma mark - 耳机状态监听
++ (void)aVAudioSessionRouteChangeNotification:(NSNotification *)notification {
+    AVAudioSessionRouteChangeReason routeChangeReason = [[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+    switch (routeChangeReason) {
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+            self.usingHeadphones = @(YES);
+            break;
+
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable: {
+            self.usingHeadphones = @(NO);
+        }
+            break;
+
+        default:
+            break;
+    }
+}
 
 
 @end

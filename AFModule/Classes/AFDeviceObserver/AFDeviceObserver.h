@@ -21,6 +21,9 @@
 
 @interface AFDeviceObserver : NSObject
 
+/** 是否使用耳机 */
+@property (class) BOOL usingHeadphones;
+
 /// 获取设备当前是否静音，只会检测一次，如果需要实时监听状态，需要添加代理并实现代理方法
 + (void)getMuteStatus:(void (^)(BOOL isMute))completion;
 
