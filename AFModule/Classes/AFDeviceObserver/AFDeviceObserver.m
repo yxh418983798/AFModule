@@ -112,7 +112,7 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 }
 
 #pragma mark - 开始监听静音状态
-static NSTimeInterval _duration;
+static NSTimeInterval _beginDate;
 + (void)startMuteObserve {
     if (!AFDeviceObserver.muteObservers.count) return;
     if (AFDeviceObserver.shareObserver.isMuteObserving) return;
@@ -123,36 +123,21 @@ static NSTimeInterval _duration;
 
 #pragma mark - 检查设备静音状态
 + (void)checkMuteStatus {
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        NSLog(@"-------------------------- 开始检测 --------------------------");
-        if (!AFDeviceObserver.shareObserver.timer) {
-            AFDeviceObserver.shareObserver.timer = [AFTimer timerWithTimeInterval:MuteTimerInterval target:AFDeviceObserver.shareObserver selector:@selector(timerAction) userInfo:nil repeats:YES forMode:(NSRunLoopCommonModes)];
-        }
-        _duration = 0.f;
+        _beginDate = [[NSDate date] timeIntervalSince1970];
         CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
         SystemSoundID systemSoundID;
         AudioServicesCreateSystemSoundID(soundFileURLRef, &systemSoundID);
         AudioServicesAddSystemSoundCompletion(systemSoundID, NULL, NULL, soundCompletion, NULL);
         AudioServicesPlaySystemSound(systemSoundID);
-        [AFDeviceObserver.shareObserver.timer fire];
-//    });
 }
-
-
-// 定时器
-- (void)timerAction {
-//    NSLog(@"-------------------------- 来了定时器: %g --------------------------", _duration);
-    _duration += MuteTimerInterval;
-}
-
 
 // 监听回调
 static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
     
-    [AFDeviceObserver.shareObserver.timer invalidate];
     AudioServicesRemoveSystemSoundCompletion(systemSoundID);
-    BOOL isMute = _duration < 0.1;
-    NSLog(@"-------------------------- 静音回调：%d %g --------------------------", isMute, _duration);
+    BOOL isMute = ([[NSDate date] timeIntervalSince1970] - _beginDate) < 0.1;
+//    NSLog(@"-------------------------- 静音回调：%d %g --------------------------", isMute, _duration);
     if (!AFDeviceObserver.shareObserver.isMute || AFDeviceObserver.shareObserver.isMute.boolValue != isMute) {
         AFDeviceObserver.shareObserver.isMute = @(isMute);
         for (int i = (int)AFDeviceObserver.muteObservers.count - 1; i >= 0; i--) {

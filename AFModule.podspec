@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.1.6'
+  s.version          = '1.1.7'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '新增是否设备在系统通话中'
+  s.description      = '优化设备静音的判断'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
