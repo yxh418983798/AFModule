@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.1.5'
+  s.version          = '1.1.6'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '新增设备是否插入耳机检测'
+  s.description      = '新增是否设备在系统通话中'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -22,8 +22,9 @@ Pod::Spec.new do |s|
 #  s.source_files = 'AFModule/AFModule.h'
   s.dependency 'SDWebImage'
 #  s.resource_bundles = {
-#   'AFModule' => ['AFModule/Assets/*']
+#   'AFModule' => ['AFModule/Assets/*.aiff']
 #  }
+  s.resources = ['AFModule/Assets/*.aiff']
   
 #  s.subspec 'AFAVCapture' do |ss|
 #    ss.ios.deployment_target = '8.0'

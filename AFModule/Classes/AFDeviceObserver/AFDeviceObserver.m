@@ -40,10 +40,13 @@ typedef void(^ObserverCompletion)(BOOL isMute);
 @end
 
 @implementation AFDeviceObserver
+static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 
+#pragma mark - 生命周期
 + (void)initialize {
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(aVAudioSessionRouteChangeNotification:) name:AVAudioSessionRouteChangeNotification object:nil];
 }
+
 
 #pragma mark - 单例
 + (instancetype)shareObserver {
@@ -51,6 +54,7 @@ typedef void(^ObserverCompletion)(BOOL isMute);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         observer = AFDeviceObserver.new;
+//        NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:self.class] URLForResource:@"AFModule" withExtension:@"bundle"]];
         observer.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSBundle.mainBundle URLForResource:@"detection.aiff" withExtension:nil] error:nil];
         [observer.player prepareToPlay];
     });
@@ -108,35 +112,47 @@ typedef void(^ObserverCompletion)(BOOL isMute);
 }
 
 #pragma mark - 开始监听静音状态
+static NSTimeInterval _duration;
 + (void)startMuteObserve {
     if (!AFDeviceObserver.muteObservers.count) return;
     if (AFDeviceObserver.shareObserver.isMuteObserving) return;
     AFDeviceObserver.shareObserver.isMuteObserving = YES;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];//保证不会打断第三方app的音频播放
-    [AFDeviceObserver.shareObserver.player play];
-    if (!AFDeviceObserver.shareObserver.timer) {
-        AFDeviceObserver.shareObserver.timer = [AFTimer timerWithTimeInterval:0.2 target:AFDeviceObserver.shareObserver selector:@selector(timerAction) userInfo:nil repeats:YES forMode:(NSRunLoopCommonModes)];
-    }
-    [AFDeviceObserver.shareObserver.timer fire];
+    [AFDeviceObserver checkMuteStatus];
 }
+
+
+#pragma mark - 检查设备静音状态
++ (void)checkMuteStatus {
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        NSLog(@"-------------------------- 开始检测 --------------------------");
+        if (!AFDeviceObserver.shareObserver.timer) {
+            AFDeviceObserver.shareObserver.timer = [AFTimer timerWithTimeInterval:MuteTimerInterval target:AFDeviceObserver.shareObserver selector:@selector(timerAction) userInfo:nil repeats:YES forMode:(NSRunLoopCommonModes)];
+        }
+        _duration = 0.f;
+        CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
+        SystemSoundID systemSoundID;
+        AudioServicesCreateSystemSoundID(soundFileURLRef, &systemSoundID);
+        AudioServicesAddSystemSoundCompletion(systemSoundID, NULL, NULL, soundCompletion, NULL);
+        AudioServicesPlaySystemSound(systemSoundID);
+        [AFDeviceObserver.shareObserver.timer fire];
+//    });
+}
+
 
 // 定时器
 - (void)timerAction {
-    _beginDate = NSDate.date;
-//    NSLog(@"-------------------------- 进入定时器：%g --------------------------", _beginDate);
-    CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
-    SystemSoundID systemSoundID;
-    AudioServicesCreateSystemSoundID(soundFileURLRef, &systemSoundID);
-    AudioServicesAddSystemSoundCompletion(systemSoundID, NULL, NULL, soundCompletion, NULL);
-    AudioServicesPlaySystemSound(systemSoundID);
+//    NSLog(@"-------------------------- 来了定时器: %g --------------------------", _duration);
+    _duration += MuteTimerInterval;
 }
+
 
 // 监听回调
 static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
     
+    [AFDeviceObserver.shareObserver.timer invalidate];
     AudioServicesRemoveSystemSoundCompletion(systemSoundID);
-    NSTimeInterval timeinterval = [[NSDate date] timeIntervalSinceDate:AFDeviceObserver.shareObserver.beginDate];
-    BOOL isMute = timeinterval < 0.1;
+    BOOL isMute = _duration < 0.1;
+    NSLog(@"-------------------------- 静音回调：%d %g --------------------------", isMute, _duration);
     if (!AFDeviceObserver.shareObserver.isMute || AFDeviceObserver.shareObserver.isMute.boolValue != isMute) {
         AFDeviceObserver.shareObserver.isMute = @(isMute);
         for (int i = (int)AFDeviceObserver.muteObservers.count - 1; i >= 0; i--) {
@@ -169,6 +185,8 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
     }
     if (!AFDeviceObserver.muteObservers.count) {
         [AFDeviceObserver stopMuteObserve];
+    } else {
+        [AFDeviceObserver checkMuteStatus];
     }
 }
 
@@ -205,17 +223,31 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
 }
 
 
+#pragma mark - 是否在系统通话中
+static NSNumber *_hasCall;
++ (BOOL)hasCall {
+    if (!_hasCall) {
+        _hasCall = AFDeviceObserver.shareObserver.callCenter.currentCalls ? @(YES) : @(NO);
+    }
+    return _hasCall.boolValue;
+}
+
+
 #pragma mark - 开始监听设备来电
 + (void)startCallObserve {
     AFDeviceObserver.shareObserver.callCenter.callEventHandler = ^(CTCall *call) {
         if (call.callState == CTCallStateDisconnected) {
             NSLog(@"电话结束或挂断电话");
+            _hasCall = @(NO);
         } else if (call.callState == CTCallStateConnected) {
             NSLog(@"电话接通");
+            _hasCall = @(YES);
         } else if(call.callState == CTCallStateIncoming) {
             NSLog(@"来电话");
+            _hasCall = @(YES);
         } else if (call.callState ==CTCallStateDialing) {
             NSLog(@"拨号打电话(在应用内调用打电话功能)");
+            _hasCall = @(YES);
         }
         
         for (int i = (int)AFDeviceObserver.callObservers.count - 1; i >= 0; i--) {
@@ -231,15 +263,6 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
         }
     };
 }
-
-
-#pragma mark - AFDeviceDelegate
-- (void)deviceDidChangeMuteStatus:(BOOL)isMute {
-    if (self.muteCompletion) self.muteCompletion(isMute);
-    self.muteCompletion = nil;
-}
-
-- (void)deviceDidChangeCallStatu:(NSString *)callStatus {}
 
 
 #pragma mark - 是否使用耳机
@@ -260,16 +283,17 @@ static NSNumber *_usingHeadphones;
     _usingHeadphones = @(usingHeadphones);
 }
 
+
 #pragma mark - 耳机状态监听
 + (void)aVAudioSessionRouteChangeNotification:(NSNotification *)notification {
     AVAudioSessionRouteChangeReason routeChangeReason = [[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
-            self.usingHeadphones = @(YES);
+            self.usingHeadphones = YES;
             break;
 
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable: {
-            self.usingHeadphones = @(NO);
+            self.usingHeadphones = NO;
         }
             break;
 
@@ -277,6 +301,15 @@ static NSNumber *_usingHeadphones;
             break;
     }
 }
+
+
+#pragma mark - AFDeviceDelegate
+- (void)deviceDidChangeMuteStatus:(BOOL)isMute {
+    if (self.muteCompletion) self.muteCompletion(isMute);
+    self.muteCompletion = nil;
+}
+
+- (void)deviceDidChangeCallStatu:(NSString *)callStatus {}
 
 
 @end

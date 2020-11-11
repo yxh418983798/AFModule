@@ -24,6 +24,9 @@
 /** 是否使用耳机 */
 @property (class) BOOL usingHeadphones;
 
+/** 是否在系统通话中 */
+@property (class) BOOL hasCall;
+
 /// 获取设备当前是否静音，只会检测一次，如果需要实时监听状态，需要添加代理并实现代理方法
 + (void)getMuteStatus:(void (^)(BOOL isMute))completion;
 
@@ -32,7 +35,6 @@
 
 /// 手动移除设备静音的监听者，不移除也不会造成内存泄露
 + (void)removeMuteObserver:(id <AFDeviceDelegate>)observer;
-
 
 /// 添加设备来电的监听者
 + (void)addCallObserver:(id <AFDeviceDelegate>)observer;
