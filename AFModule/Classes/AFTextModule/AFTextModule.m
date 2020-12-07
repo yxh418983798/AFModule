@@ -117,6 +117,18 @@
         }
     }
     
+    if (textField.module.restrictOption & AFInputRestrictionOptionNotSpace) {
+        if (textField.module.beyondRestrictionHandle) {
+            textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpace);
+        }
+        if ([string isEqualToString:@" "]) {
+            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+            }
+            return NO;
+        }
+    }
+    
     if (textField.module.restrictOption & AFInputRestrictionOptionNotEmoji) {
          __block BOOL hasEomji = NO;
         [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
@@ -300,6 +312,18 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
             }
+            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
+            }
+            return NO;
+        }
+    }
+    
+    if (textView.module.restrictOption & AFInputRestrictionOptionNotSpace) {
+        if (textView.module.beyondRestrictionHandle) {
+            textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpace);
+        }
+        if ([text isEqualToString:@" "]) {
             if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
                 [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             }

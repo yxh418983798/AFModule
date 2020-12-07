@@ -20,7 +20,8 @@ typedef NS_OPTIONS(NSInteger, AFInputRestrictionOptions) {
     AFInputRestrictionOptionNotChinese        = 1 << 4,   // 禁止输入中文
     AFInputRestrictionOptionNotEmoji          = 1 << 5,   // 禁止输入表情
     AFInputRestrictionOptionNotSpecialChar    = 1 << 6,   // 禁止特殊字符（除了英文、数字、中文意外的字符）
-    
+    AFInputRestrictionOptionNotSpace          = 1 << 7,   // 禁止输入空格
+
     AFInputRestrictionOptionMaxLength         = 1 << 10,  // 长度限制，不需要设置枚举，只要设置maxLenght大于0即可
 };
 
