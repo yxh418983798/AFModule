@@ -80,9 +80,9 @@ void AFTextViewMethodSelector() {}
         }
     }
     else {
-//        method_exchangeImplementations(class_getInstanceMethod(swizzleClass, originalSel), class_getInstanceMethod(swizzleClass, swizzledSel));
-        class_addMethod(swizzleClass, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_%@", NSStringFromClass(swizzleClass), NSStringFromSelector(originalSel)]), method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-        class_replaceMethod(swizzleClass, originalSel, method_getImplementation(swizzleMethod), method_getTypeEncoding(swizzleMethod));
+        if (class_addMethod(swizzleClass, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_%@", NSStringFromClass(swizzleClass), NSStringFromSelector(originalSel)]), method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))) {
+            method_exchangeImplementations(class_getInstanceMethod(swizzleClass, originalSel), class_getInstanceMethod(swizzleClass, swizzledSel));
+        }
     }
 }
 

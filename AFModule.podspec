@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.1.8'
+  s.version          = '1.1.9'
   s.summary          = 'iOS 基础组件库'
   s.description      = 'textModel新增限制，不能输入空格'
 

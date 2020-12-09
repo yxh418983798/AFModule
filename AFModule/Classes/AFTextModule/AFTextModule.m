@@ -118,10 +118,10 @@
     }
     
     if (textField.module.restrictOption & AFInputRestrictionOptionNotSpace) {
-        if (textField.module.beyondRestrictionHandle) {
-            textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpace);
-        }
         if ([string isEqualToString:@" "]) {
+            if (textField.module.beyondRestrictionHandle) {
+                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpace);
+            }
             if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
                 [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             }
