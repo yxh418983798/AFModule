@@ -11,7 +11,7 @@
 #import <AFModule/AFWeakProxy.h>
 #import <AFModule/AFTimer.h>
 #import <AVFoundation/AVFoundation.h>
-
+ 
 typedef void(^ObserverCompletion)(BOOL isMute);
 
 @interface AFDeviceObserver () <AFDeviceDelegate>
