@@ -70,18 +70,9 @@ void AFTextViewMethodSelector() {}
     Method originalMethod = class_getInstanceMethod(swizzleClass, originalSel);
     Method swizzleMethod = class_getInstanceMethod(swizzleClass, swizzledSel);
 
-    //是否实现
-    if (class_addMethod(swizzleClass, originalSel, method_getImplementation(swizzleMethod), method_getTypeEncoding(swizzleMethod))) {
-        if (originalMethod) {
-            class_replaceMethod(swizzleClass, swizzledSel, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-        } else {
-            Method addMethod = class_getInstanceMethod(self.class, addSel);
-            class_replaceMethod(swizzleClass, swizzledSel, method_getImplementation(addMethod), method_getTypeEncoding(addMethod));
-        }
-    }
-    else {
+    if (!class_addMethod(swizzleClass, originalSel, method_getImplementation(swizzleMethod), method_getTypeEncoding(swizzleMethod))) {
         if (class_addMethod(swizzleClass, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_%@", NSStringFromClass(swizzleClass), NSStringFromSelector(originalSel)]), method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))) {
-            method_exchangeImplementations(class_getInstanceMethod(swizzleClass, originalSel), class_getInstanceMethod(swizzleClass, swizzledSel));
+            class_replaceMethod(swizzleClass, originalSel, method_getImplementation(swizzleMethod), method_getTypeEncoding(swizzleMethod));
         }
     }
 }

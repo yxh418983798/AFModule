@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.1.9'
+  s.version          = '1.2.0'
   s.summary          = 'iOS 基础组件库'
   s.description      = 'textModel新增限制，不能输入空格'
 
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Alfie' => '418983798@qq.com' }
   s.source           = { :git => 'https://github.com/CocoaPods/Specs.git', :tag => s.version.to_s, :branch => 'trunk'}
   s.source           = { :git => 'https://github.com/yxh418983798/AFModule.git', :tag => s.version.to_s, :branch => 'master'}
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.source_files = 'AFModule/Classes/{AFTimer,AFTextModule,AFDeviceObserver,AFWeakProxy}/*.{h,m}'
 #  s.source_files = 'AFModule/AFModule.h'
   s.dependency 'SDWebImage'

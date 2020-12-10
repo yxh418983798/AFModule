@@ -28,7 +28,7 @@
     if ([self respondsToSelector:sel]) {
         return ((BOOL (*)(id, SEL, id, NSRange, NSString *))objc_msgSend)(self, sel, textField, range, string);
     } else {
-        return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+        return YES;
     }
 }
 
@@ -36,16 +36,12 @@
 - (BOOL)afhook_textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
     if ([string isEqualToString:@""]) {
-        if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-            return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-        }
+        return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
         return YES;
     }
     
     if ([string isEqualToString:@"\n"]) {
-        if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-        }
+        [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
         return NO;
     }
     
@@ -54,9 +50,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNoneNullFirstChar);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -68,9 +62,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNumber);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -82,9 +74,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyChinese);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -96,9 +86,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotChinese);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -110,9 +98,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -122,9 +108,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpace);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -164,9 +148,7 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotEmoji);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
@@ -179,14 +161,12 @@
         if (selectedRang && pos) {
             NSInteger startOffset = [textField offsetFromPosition:textField.beginningOfDocument toPosition:selectedRang.start];
             if (startOffset < maxLenght) {
-                return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             } else {
                 if (textField.module.beyondRestrictionHandle) {
                     textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
                 }
-                if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                    [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-                }
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
                 return NO;
             }
         }
@@ -194,7 +174,7 @@
         NSString *comcatStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
         NSInteger canInputLength = maxLenght - [self displayLengthWithString:comcatStr];
         if (canInputLength >= 0) {
-            return [self afhook_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+            return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
         } else {
             NSInteger length = [self displayLengthWithString:string] + canInputLength;
             NSRange rang = {0, MAX(length, 0)};
@@ -205,17 +185,11 @@
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
             }
-            if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-                 [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
     }
-    
-    if ([self respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-        return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-    }
-    return YES;
+    return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {
@@ -232,22 +206,48 @@
     }
 }
 
+
+#pragma mark - UITextView
 - (BOOL)afperform_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textView:shouldChangeTextInRange:replacementText:", NSStringFromClass(self.class)]);
     if ([self respondsToSelector:sel]) {
         return ((BOOL (*)(id, SEL, id, NSRange, NSString *))objc_msgSend)(self, sel, textView, range, text);
     } else {
-        return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+        return YES;
+    }
+}
+
+- (void)afhook_textViewDidChange:(UITextView *)textView {
+    
+    textView.module.placeholderLb.hidden = textView.text.length;
+    if ([self respondsToSelector:@selector(textViewDidChange:)]) {
+        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]);
+        if ([self respondsToSelector:sel]) {
+            ((void (*)(id, SEL, id))objc_msgSend)(self, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]), textView);
+        }
+    }
+    if (textView.module.maxLenght > 0) {
+
+        UITextRange *selectedRange = textView.markedTextRange;
+        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+        if (selectedRange && position) return;
+        NSString *text = textView.text;
+        NSInteger existNum = [self displayLengthWithString:text];
+        if (existNum > textView.module.maxLenght) {
+            textView.text = [text substringToIndex:textView.module.maxLenght];
+        }
+        
+        //更新字符长度
+        if (textView.module.lenghtTipEnable) {
+            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(textView.module.maxLenght - existNum), 0), textView.module.maxLenght];
+        }
     }
 }
 
 - (BOOL)afhook_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
 
     if ([text isEqualToString:@""]) {
-        if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-            return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-        }
-        return YES;
+        return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
     }
     
     if (textView.module.restrictOption & AFInputRestrictionOptionNoneNullFirstChar) {
@@ -255,9 +255,7 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNoneNullFirstChar);
             }
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
@@ -269,9 +267,7 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNumber);
             }
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
@@ -283,9 +279,7 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyChinese);
             }
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
@@ -297,9 +291,7 @@
                 if (textView.module.beyondRestrictionHandle) {
                     textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotChinese);
                 }
-                if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                    [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-                }
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
                 return NO;
             }
         }
@@ -312,9 +304,7 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
             }
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
@@ -324,9 +314,7 @@
             textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpace);
         }
         if ([text isEqualToString:@" "]) {
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
@@ -366,9 +354,7 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotEmoji);
             }
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
@@ -386,9 +372,7 @@
                 if (textView.module.beyondRestrictionHandle) {
                     textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
                 }
-                if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                    [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-                }
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
                 return NO;
             }
         }
@@ -407,47 +391,11 @@
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
             }
-            if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
     }
-    
-    if ([self respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-        return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-    }
-    return YES;
-}
-
-
-- (void)afhook_textViewDidChange:(UITextView *)textView {
-    
-    textView.module.placeholderLb.hidden = textView.text.length;
-    if ([self respondsToSelector:@selector(textViewDidChange:)]) {
-        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]);
-        if ([self respondsToSelector:sel]) {
-            ((void (*)(id, SEL, id))objc_msgSend)(self, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]), textView);
-        } else {
-            [self afhook_textViewDidChange:textView];
-        }
-    }
-    if (textView.module.maxLenght > 0) {
-
-        UITextRange *selectedRange = textView.markedTextRange;
-        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
-        if (selectedRange && position) return;
-        NSString *text = textView.text;
-        NSInteger existNum = [self displayLengthWithString:text];
-        if (existNum > textView.module.maxLenght) {
-            textView.text = [text substringToIndex:textView.module.maxLenght];
-        }
-        
-        //更新字符长度
-        if (textView.module.lenghtTipEnable) {
-            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(textView.module.maxLenght - existNum), 0), textView.module.maxLenght];
-        }
-    }
+    return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
 }
 
 @end
@@ -503,7 +451,6 @@
     return _placeholderLb;
 }
 
-
 - (UILabel *)lenghtTipLb {
     if (!_lenghtTipLb) {
         _lenghtTipLb = [[UILabel alloc] initWithFrame:(CGRectMake(5, self.target.frame.size.height - 20, self.target.frame.size.width - 10, 20))];
@@ -514,7 +461,6 @@
     }
     return _lenghtTipLb;
 }
-
 
 - (void)setLenghtTipEnable:(BOOL)lenghtTipEnable {
     _lenghtTipEnable = lenghtTipEnable;
@@ -527,7 +473,6 @@
         if (_lenghtTipLb.superview) [_lenghtTipLb removeFromSuperview];
     }
 }
-
 
 - (void)setMaxLenght:(NSInteger)maxLenght {
     [super setMaxLenght:maxLenght];
