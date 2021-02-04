@@ -97,10 +97,10 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/AFModule/AFModule.bundle"
+  install_resource "${PODS_ROOT}/../../AFModule/Assets/detection.aiff"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/AFModule/AFModule.bundle"
+  install_resource "${PODS_ROOT}/../../AFModule/Assets/detection.aiff"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -115,7 +115,7 @@
     [self addDataWithText:@"AFTextModule" class:@"AFTextModuleViewController"];
     [self addDataWithText:@"AFTimer" class:@"AFTimerViewController"];
     [self addDataWithText:@"KVO" class:@"AFKVOViewController"];
-    [self addDataWithText:@"AFImageBrowser" class:@"AFBrowserTestViewController"];
+    [self addDataWithText:@"AFSearchController" class:@"AFBrowserTestViewController"];
     [self addDataWithText:@"AFAVCapture" class:@"AFAVCaptureViewController"];
     [self addDataWithText:@"AFNavigationTitleViewController" class:@"AFNavigationTitleViewController"];
     

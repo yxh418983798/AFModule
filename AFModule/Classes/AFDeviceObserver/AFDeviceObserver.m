@@ -11,6 +11,7 @@
 #import <AFModule/AFWeakProxy.h>
 #import <AFModule/AFTimer.h>
 #import <AVFoundation/AVFoundation.h>
+#import <objc/runtime.h>
  
 typedef void(^ObserverCompletion)(BOOL isMute);
 
@@ -21,9 +22,6 @@ typedef void(^ObserverCompletion)(BOOL isMute);
 
 /** 定时器 */
 @property (nonatomic, strong) AFTimer           *timer;
-
-/** 当前是否静音 */
-@property (nonatomic, assign) NSNumber          *isMute;
 
 /** 是否处于静音的监听中 */
 @property (nonatomic, assign) BOOL              isMuteObserving;
@@ -38,6 +36,7 @@ typedef void(^ObserverCompletion)(BOOL isMute);
 @property(nonatomic, strong) CTCallCenter       *callCenter;
 
 @end
+
 
 @implementation AFDeviceObserver
 static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
@@ -63,8 +62,8 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 
 
 #pragma mark - Getter
-+ (NSMutableArray <AFWeakProxy *> *)muteObservers {
-    static NSMutableArray <AFWeakProxy *> *_observers;
++ (NSMutableArray *)muteObservers {
+    static NSMutableArray *_observers;
     if (!_observers) {
         _observers = NSMutableArray.array;
     }
@@ -89,8 +88,9 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 
 #pragma mark - 获取手机当前是否静音，只会调用一次
 + (void)getMuteStatus:(void (^)(BOOL))completion {
-    [self.shareObserver setMuteCompletion:completion];
-    [self.muteObservers addObject:[AFWeakProxy proxyWithTarget:self.shareObserver]];
+    AFDeviceObserver *observer = AFDeviceObserver.new;
+    [observer setMuteCompletion:completion];
+    [self.muteObservers addObject:observer];
     [AFDeviceObserver startMuteObserve];
 }
 
@@ -104,8 +104,11 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 
 
 #pragma mark - 移除静音监听者
-+ (void)removeMuteObserver:(NSObject <AFDeviceDelegate> *)observer {
-    if ([self.muteObservers containsObject:observer.af_proxy]) {
++ (void)removeMuteObserver:(NSObject *)observer {
+    if ([self.muteObservers containsObject:observer]) {
+        [self.muteObservers removeObject:observer];
+        observer.af_proxy = nil;
+    } else if (observer.af_proxy && [self.muteObservers containsObject:observer.af_proxy]) {
         [self.muteObservers removeObject:observer.af_proxy];
         observer.af_proxy = nil;
     }
@@ -124,54 +127,50 @@ static NSTimeInterval _beginDate;
 #pragma mark - 检查设备静音状态
 + (void)checkMuteStatus {
 //        NSLog(@"-------------------------- 开始检测 --------------------------");
-        _beginDate = [[NSDate date] timeIntervalSince1970];
-        CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
-        SystemSoundID systemSoundID;
-        AudioServicesCreateSystemSoundID(soundFileURLRef, &systemSoundID);
-        AudioServicesAddSystemSoundCompletion(systemSoundID, NULL, NULL, soundCompletion, NULL);
-        AudioServicesPlaySystemSound(systemSoundID);
+    _beginDate = NSDate.date.timeIntervalSince1970;
+    CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
+    SystemSoundID systemSoundID;
+    AudioServicesCreateSystemSoundID(soundFileURLRef, &systemSoundID);
+    AudioServicesAddSystemSoundCompletion(systemSoundID, NULL, NULL, soundCompletion, NULL);
+    AudioServicesPlaySystemSound(systemSoundID);
 }
 
 // 监听回调
 static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
     
     AudioServicesRemoveSystemSoundCompletion(systemSoundID);
-    BOOL isMute = ([[NSDate date] timeIntervalSince1970] - _beginDate) < 0.1;
+    BOOL isMute = (NSDate.date.timeIntervalSince1970 - _beginDate) < 0.1;
 //    NSLog(@"-------------------------- 静音回调：%d %g --------------------------", isMute, _duration);
-    if (!AFDeviceObserver.shareObserver.isMute || AFDeviceObserver.shareObserver.isMute.boolValue != isMute) {
-        AFDeviceObserver.shareObserver.isMute = @(isMute);
-        for (int i = (int)AFDeviceObserver.muteObservers.count - 1; i >= 0; i--) {
-            AFWeakProxy *proxy = AFDeviceObserver.muteObservers[i];
-            id target = proxy.af_target;
-            if (target) {
-                if ([target respondsToSelector:@selector(deviceDidChangeMuteStatus:)]) {
-                    [target deviceDidChangeMuteStatus:isMute];
+    for (int i = (int)AFDeviceObserver.muteObservers.count - 1; i >= 0; i--) {
+        AFWeakProxy *proxy = AFDeviceObserver.muteObservers[i];
+        if ([proxy isKindOfClass:AFDeviceObserver.class]) {
+            // 一次性回调
+            AFDeviceObserver *observer = (AFDeviceObserver *)proxy;
+            [observer deviceDidChangeMuteStatus:isMute];
+            [AFDeviceObserver removeMuteObserver:observer];
+        } else if ([proxy isKindOfClass:AFWeakProxy.class]) {
+            // 持续监听
+            NSNumber *isFirst = objc_getAssociatedObject(proxy, "isFirst");
+            if (!isFirst || isFirst.boolValue != isMute) {
+                objc_setAssociatedObject(proxy, "isFirst", @(isMute), OBJC_ASSOCIATION_RETAIN);
+                // 首次检测 或 有改变状态，走代理方法
+                id target = proxy.af_target;
+                if (target) {
+                    if ([target respondsToSelector:@selector(deviceDidChangeMuteStatus:)]) {
+                        [target deviceDidChangeMuteStatus:isMute];
+                    }
+                } else {
+                    [AFDeviceObserver removeMuteObserver:proxy];
                 }
-                if (target == AFDeviceObserver.shareObserver) {
-                    [AFDeviceObserver removeMuteObserver:target];
-                    AFDeviceObserver.shareObserver.isMute = nil;
-                }
-            } else {
-                [AFDeviceObserver.muteObservers removeObject:proxy];
             }
-        }
-    } else {
-        for (int i = (int)AFDeviceObserver.muteObservers.count - 1; i >= 0; i--) {
-            AFWeakProxy *proxy = AFDeviceObserver.muteObservers[i];
-            id target = proxy.af_target;
-            if (!target) {
-                [AFDeviceObserver.muteObservers removeObject:proxy];
-            } else if (target == AFDeviceObserver.shareObserver) {
-                [target deviceDidChangeMuteStatus:isMute];
-                [AFDeviceObserver removeMuteObserver:target];
-                AFDeviceObserver.shareObserver.isMute = nil;
-            }
+        } else {
+            [AFDeviceObserver removeMuteObserver:proxy];
         }
     }
-    if (!AFDeviceObserver.muteObservers.count) {
-        [AFDeviceObserver stopMuteObserve];
-    } else {
+    if (AFDeviceObserver.muteObservers.count) {
         [AFDeviceObserver checkMuteStatus];
+    } else {
+        [AFDeviceObserver stopMuteObserve];
     }
 }
 
@@ -184,7 +183,6 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
     }
     [AFDeviceObserver.shareObserver.timer invalidate];
     AFDeviceObserver.shareObserver.isMuteObserving = NO;
-    AFDeviceObserver.shareObserver.isMute = nil;
 }
 
 

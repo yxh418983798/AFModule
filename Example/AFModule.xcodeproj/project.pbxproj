@@ -11,7 +11,6 @@
 		31532016239A4218001C7942 /* AFTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31532015239A4218001C7942 /* AFTimerViewController.m */; };
 		3153201F239A5BF2001C7942 /* AFKVOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153201E239A5BF2001C7942 /* AFKVOViewController.m */; };
 		316C525F24C0540900AF2EBB /* AFNavigationTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316C525E24C0540900AF2EBB /* AFNavigationTitleViewController.m */; };
-		319DB4FF24D2B1B800C6FAF2 /* detection.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 319DB4FE24D2B1B800C6FAF2 /* detection.aiff */; };
 		31BB51A2238F7A220003D2A1 /* AFTextModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB51A1238F7A220003D2A1 /* AFTextModuleViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -235,6 +234,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				E198EE7ABDD3E3303717269F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,7 +309,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
-				319DB4FF24D2B1B800C6FAF2 /* detection.aiff in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -347,6 +346,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E198EE7ABDD3E3303717269F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-resources.sh",
+				"${PODS_ROOT}/../../AFModule/Assets/detection.aiff",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/detection.aiff",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AFModule_Example/Pods-AFModule_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EEFDDA46D2A4463778F12A23 /* [CP] Check Pods Manifest.lock */ = {
@@ -519,7 +536,7 @@
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.4.2;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mostone.qiye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -540,7 +557,7 @@
 				GCC_PREFIX_HEADER = "AFModule/AFModule-Prefix.pch";
 				INFOPLIST_FILE = "AFModule/AFModule-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.4.2;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mostone.qiye;
 				PRODUCT_NAME = "$(TARGET_NAME)";

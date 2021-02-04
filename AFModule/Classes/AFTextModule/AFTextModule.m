@@ -178,9 +178,10 @@
         } else {
             NSInteger length = [self displayLengthWithString:string] + canInputLength;
             NSRange rang = {0, MAX(length, 0)};
-            if (range.length > 0) {
+            if (rang.length > 0) {
                 NSString *subString = [string substringWithRange:rang];
-                textField.text = [textField.text stringByReplacingCharactersInRange:rang withString:subString];
+                textField.text = [textField.text stringByAppendingString:subString];
+//                textField.text = [textField.text stringByReplacingCharactersInRange:rang withString:subString];
             }
             if (textField.module.beyondRestrictionHandle) {
                 textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
@@ -384,9 +385,10 @@
         } else {
             NSInteger length = [self displayLengthWithString:text] + canInputLength;
             NSRange rang = {0, MAX(length, 0)};
-            if (range.length > 0) {
+            if (rang.length > 0) {
                 NSString *subString = [text substringWithRange:rang];
-                textView.text = [textView.text stringByReplacingCharactersInRange:rang withString:subString];
+                textView.text = [textView.text stringByAppendingString:subString];
+//                textView.text = [textView.text stringByReplacingCharactersInRange:rang withString:subString];
             }
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);

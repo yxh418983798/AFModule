@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.0'
+  s.version          = '1.4.2'
   s.summary          = 'iOS 基础组件库'
-  s.description      = 'textModel新增限制，不能输入空格'
+  s.description      = '静音监听优化'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

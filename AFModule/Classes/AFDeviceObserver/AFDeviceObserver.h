@@ -10,6 +10,8 @@
 
 @protocol AFDeviceDelegate <NSObject>
 
+@optional;
+
 /// 静音状态改变的回调
 - (void)deviceDidChangeMuteStatus:(BOOL)isMute;
 
