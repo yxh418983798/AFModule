@@ -23,6 +23,6 @@
 
 @interface NSObject (AFWeakProxy)
 
-@property (nonatomic, weak) id            af_proxy;
+@property (nonatomic, weak) AFWeakProxy            *af_proxy;
 
 @end

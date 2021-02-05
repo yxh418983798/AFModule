@@ -90,27 +90,32 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 + (void)getMuteStatus:(void (^)(BOOL))completion {
     AFDeviceObserver *observer = AFDeviceObserver.new;
     [observer setMuteCompletion:completion];
-    [self.muteObservers addObject:observer];
-    [AFDeviceObserver startMuteObserve];
+    [self addMuteObserver:observer];
 }
 
 
 #pragma mark - 添加静音监听者
 + (void)addMuteObserver:(NSObject <AFDeviceDelegate> *)observer {
-    if ([observer af_proxy] && [self.muteObservers containsObject:observer.af_proxy]) return;
-    [self.muteObservers addObject:[AFWeakProxy proxyWithTarget:observer]];
+    if (!observer || [self.muteObservers containsObject:observer]) return;
+    if ([observer isKindOfClass:AFDeviceObserver.class]) {
+        [self.muteObservers addObject:observer];
+    } else {
+        [self.muteObservers addObject:[AFWeakProxy proxyWithTarget:observer]];
+    }
     [AFDeviceObserver startMuteObserve];
 }
 
 
 #pragma mark - 移除静音监听者
 + (void)removeMuteObserver:(NSObject *)observer {
+//    if (!self.muteObservers.count) return;
     if ([self.muteObservers containsObject:observer]) {
         [self.muteObservers removeObject:observer];
-        observer.af_proxy = nil;
-    } else if (observer.af_proxy && [self.muteObservers containsObject:observer.af_proxy]) {
-        [self.muteObservers removeObject:observer.af_proxy];
-        observer.af_proxy = nil;
+    } else {
+        id proxy = observer.af_proxy;
+        if ([proxy isKindOfClass:AFWeakProxy.class] && [self.muteObservers containsObject:proxy]) {
+            [self.muteObservers removeObject:observer.af_proxy];
+        }
     }
 }
 
@@ -126,7 +131,7 @@ static NSTimeInterval _beginDate;
 
 #pragma mark - 检查设备静音状态
 + (void)checkMuteStatus {
-//        NSLog(@"-------------------------- 开始检测 --------------------------");
+    NSLog(@"-------------------------- 开始检测 --------------------------");
     _beginDate = NSDate.date.timeIntervalSince1970;
     CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
     SystemSoundID systemSoundID;
