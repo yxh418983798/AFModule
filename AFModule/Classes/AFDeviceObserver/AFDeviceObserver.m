@@ -100,6 +100,11 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
     if ([observer isKindOfClass:AFDeviceObserver.class]) {
         [self.muteObservers addObject:observer];
     } else {
+        for (AFWeakProxy *muteObserver in self.muteObservers) {
+            if ([muteObserver isKindOfClass:AFWeakProxy.class] && muteObserver.af_target == observer) {
+                return;
+            }
+        }
         [self.muteObservers addObject:[AFWeakProxy proxyWithTarget:observer]];
     }
     [AFDeviceObserver startMuteObserve];
@@ -109,12 +114,17 @@ static NSTimeInterval MuteTimerInterval = 0.001; // 定时器的间隔
 #pragma mark - 移除静音监听者
 + (void)removeMuteObserver:(NSObject *)observer {
 //    if (!self.muteObservers.count) return;
-    if ([self.muteObservers containsObject:observer]) {
-        [self.muteObservers removeObject:observer];
-    } else {
-        id proxy = observer.af_proxy;
-        if ([proxy isKindOfClass:AFWeakProxy.class] && [self.muteObservers containsObject:proxy]) {
-            [self.muteObservers removeObject:observer.af_proxy];
+    if (!observer) {
+        return;
+    }
+    for (AFWeakProxy *muteObserver in self.muteObservers) {
+        if (muteObserver == observer) {
+            [self.muteObservers removeObject:muteObserver];
+            return;
+        }
+        if ([muteObserver isKindOfClass:AFWeakProxy.class] && muteObserver.af_target == observer) {
+            [self.muteObservers removeObject:muteObserver];
+            return;
         }
     }
 }
@@ -131,7 +141,7 @@ static NSTimeInterval _beginDate;
 
 #pragma mark - 检查设备静音状态
 + (void)checkMuteStatus {
-    NSLog(@"-------------------------- 开始检测 --------------------------");
+//    NSLog(@"-------------------------- 开始检测 --------------------------");
     _beginDate = NSDate.date.timeIntervalSince1970;
     CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
     SystemSoundID systemSoundID;
@@ -145,7 +155,7 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
     
     AudioServicesRemoveSystemSoundCompletion(systemSoundID);
     BOOL isMute = (NSDate.date.timeIntervalSince1970 - _beginDate) < 0.1;
-//    NSLog(@"-------------------------- 静音回调：%d %g --------------------------", isMute, _duration);
+//    NSLog(@"-------------------------- 静音回调：%d %g --------------------------", isMute, NSDate.date.timeIntervalSince1970 - _beginDate);
     for (int i = (int)AFDeviceObserver.muteObservers.count - 1; i >= 0; i--) {
         AFWeakProxy *proxy = AFDeviceObserver.muteObservers[i];
         if ([proxy isKindOfClass:AFDeviceObserver.class]) {
@@ -203,7 +213,6 @@ static void soundCompletion(SystemSoundID systemSoundID, void *inClientData) {
 + (void)removeCallObserver:(NSObject <AFDeviceDelegate> *)observer {
     if ([self.callObservers containsObject:observer.af_proxy]) {
         [self.callObservers removeObject:observer.af_proxy];
-        observer.af_proxy = nil;
     }
     if (!AFDeviceObserver.callObservers.count) {
         AFDeviceObserver.shareObserver->_callCenter = nil;

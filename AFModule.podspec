@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.3'
+  s.version          = '1.4.4'
   s.summary          = 'iOS 基础组件库'
   s.description      = '静音监听优化'
 
