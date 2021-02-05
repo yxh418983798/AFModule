@@ -263,21 +263,26 @@ static NSNumber *_hasCall;
 
 
 #pragma mark - 是否使用耳机
-static NSNumber *_usingHeadphones;
-+ (BOOL)usingHeadphones {
-    if (!_usingHeadphones) {
+static NSNumber *_usingAudioPort;
++ (BOOL)usingAudioPort {
+    if (!_usingAudioPort) {
         AVAudioSessionRouteDescription *currentRoute = AVAudioSession.sharedInstance.currentRoute;
         for (AVAudioSessionPortDescription *output in currentRoute.outputs) {
-            if ([output.portType isEqualToString:AVAudioSessionPortHeadphones] || [output.portType isEqualToString:AVAudioSessionPortBluetoothA2DP] || [output.portType isEqualToString:AVAudioSessionPortBluetoothLE]) {
-                _usingHeadphones = @(YES);
+            if ([output.portType isEqualToString:AVAudioSessionPortHeadphones] ||
+                [output.portType isEqualToString:AVAudioSessionPortBluetoothA2DP] ||
+                [output.portType isEqualToString:AVAudioSessionPortBluetoothLE] ||
+                [output.portType isEqualToString:AVAudioSessionPortAirPlay] ||
+                [output.portType isEqualToString:AVAudioSessionPortUSBAudio] ||
+                [output.portType isEqualToString:AVAudioSessionPortCarAudio]) {
+                _usingAudioPort = @(YES);
               }
         }
     }
-    return _usingHeadphones.boolValue;
+    return _usingAudioPort.boolValue;
 }
 
-+ (void)setUsingHeadphones:(BOOL)usingHeadphones {
-    _usingHeadphones = @(usingHeadphones);
++ (void)setUsingAudioPort:(BOOL)usingAudioPort {
+    _usingAudioPort = @(usingAudioPort);
 }
 
 
@@ -286,11 +291,11 @@ static NSNumber *_usingHeadphones;
     AVAudioSessionRouteChangeReason routeChangeReason = [[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
-            self.usingHeadphones = YES;
+            self.usingAudioPort = YES;
             break;
 
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable: {
-            self.usingHeadphones = NO;
+            self.usingAudioPort = NO;
         }
             break;
 

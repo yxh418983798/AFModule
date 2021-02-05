@@ -23,8 +23,8 @@
 
 @interface AFDeviceObserver : NSObject
 
-/** 是否使用耳机 */
-@property (class) BOOL usingHeadphones;
+/** 是否使用外置的音频输出 */
+@property (class) BOOL usingAudioPort;
 
 /** 是否在系统通话中 */
 @property (class) BOOL hasCall;
