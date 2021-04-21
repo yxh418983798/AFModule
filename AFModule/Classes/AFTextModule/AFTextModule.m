@@ -55,12 +55,24 @@
         }
     }
     
-    if (textField.module.restrictOption & AFInputRestrictionOptionNumber) {
+    if (textField.module.restrictOption & AFInputRestrictionOptionOnlyNumber) {
         NSString *regex = @"[0-9]*";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         if (![predicate evaluateWithObject:string]) {
             if (textField.module.beyondRestrictionHandle) {
-                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNumber);
+                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyNumber);
+            }
+            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+            return NO;
+        }
+    }
+    
+    if (textField.module.restrictOption & AFInputRestrictionOptionNotNumber) {
+        NSString *regex = @"[0-9]*";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        if ([predicate evaluateWithObject:string]) {
+            if (textField.module.beyondRestrictionHandle) {
+                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotNumber);
             }
             [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
@@ -95,11 +107,14 @@
         NSString *regex = @"^[A-Za-z0-9\\u4e00-\u9fa5]+$";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         if (![predicate evaluateWithObject:string]) {
-            if (textField.module.beyondRestrictionHandle) {
-                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
+            const unichar hs = [string characterAtIndex:0];
+            if (hs < 0x278b || hs > 0x2792) { ///排除 九宫格键盘
+                if (textField.module.beyondRestrictionHandle) {
+                    textField.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
+                }
+                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+                return NO;
             }
-            [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            return NO;
         }
     }
     
@@ -130,9 +145,11 @@
               if (ls == 0x20e3 || ls == 0xfe0f) {
                   hasEomji = YES;
               }
-            } else {
+            } else {// 278b 278d
               if (0x2100 <= hs && hs <= 0x27ff && hs != 0x263b) {
-                  hasEomji = YES;
+                  if (hs < 0x278b || hs > 0x2792) {
+                      hasEomji = YES; // 九宫格键盘
+                  }
               } else if (0x2B05 <= hs && hs <= 0x2b07) {
                   hasEomji = YES;
               } else if (0x2934 <= hs && hs <= 0x2935) {
@@ -261,12 +278,12 @@
         }
     }
     
-    if (textView.module.restrictOption & AFInputRestrictionOptionNumber) {
+    if (textView.module.restrictOption & AFInputRestrictionOptionOnlyNumber) {
         NSString *regex = @"[0-9]*";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         if (![predicate evaluateWithObject:text]) {
             if (textView.module.beyondRestrictionHandle) {
-                textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNumber);
+                textView.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyNumber);
             }
             [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
@@ -279,6 +296,18 @@
         if (![predicate evaluateWithObject:text]) {
             if (textView.module.beyondRestrictionHandle) {
                 textView.module.beyondRestrictionHandle(AFInputRestrictionOptionOnlyChinese);
+            }
+            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
+            return NO;
+        }
+    }
+    
+    if (textView.module.restrictOption & AFInputRestrictionOptionNotNumber) {
+        NSString *regex = @"[0-9]*";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        if ([predicate evaluateWithObject:text]) {
+            if (textView.module.beyondRestrictionHandle) {
+                textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotNumber);
             }
             [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
@@ -302,11 +331,14 @@
         NSString *regex = @"^[A-Za-z0-9\\u4e00-\u9fa5]+$";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         if (![predicate evaluateWithObject:text]) {
-            if (textView.module.beyondRestrictionHandle) {
-                textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
+            const unichar hs = [text characterAtIndex:0];
+            if (hs < 0x278b || hs > 0x2792) { ///排除 九宫格键盘
+                if (textView.module.beyondRestrictionHandle) {
+                    textView.module.beyondRestrictionHandle(AFInputRestrictionOptionNotSpecialChar);
+                }
+                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
+                return NO;
             }
-            [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            return NO;
         }
     }
     
@@ -339,7 +371,9 @@
               }
             } else {
               if (0x2100 <= hs && hs <= 0x27ff && hs != 0x263b) {
-                  hasEomji = YES;
+                  if (hs < 0x278b || hs > 0x2792) {
+                      hasEomji = YES; // 九宫格键盘
+                  }
               } else if (0x2B05 <= hs && hs <= 0x2b07) {
                   hasEomji = YES;
               } else if (0x2934 <= hs && hs <= 0x2935) {

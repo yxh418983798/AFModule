@@ -15,14 +15,14 @@
 typedef NS_OPTIONS(NSInteger, AFInputRestrictionOptions) {
     AFInputRestrictionOptionNone              = 1 << 0,   // 没有限制
     AFInputRestrictionOptionNoneNullFirstChar = 1 << 1,   // 首字符不能为空
-    AFInputRestrictionOptionNumber            = 1 << 2,   // 输入纯数字
-    AFInputRestrictionOptionOnlyChinese       = 1 << 3,   // 输入纯中文
+    AFInputRestrictionOptionNotSpace          = 1 << 2,   // 禁止输入空格
+    AFInputRestrictionOptionNotNumber         = 1 << 3,   // 禁止输入数字
     AFInputRestrictionOptionNotChinese        = 1 << 4,   // 禁止输入中文
-    AFInputRestrictionOptionNotEmoji          = 1 << 5,   // 禁止输入表情
-    AFInputRestrictionOptionNotSpecialChar    = 1 << 6,   // 禁止特殊字符（除了英文、数字、中文意外的字符）
-    AFInputRestrictionOptionNotSpace          = 1 << 7,   // 禁止输入空格
-
-    AFInputRestrictionOptionMaxLength         = 1 << 10,  // 长度限制，不需要设置枚举，只要设置maxLenght大于0即可
+    AFInputRestrictionOptionNotEmoji          = 1 << 5,   // 禁止输入Emoji表情
+    AFInputRestrictionOptionNotSpecialChar    = 1 << 6,   // 禁止特殊字符（除了英文、数字、中文以外的字符）
+    AFInputRestrictionOptionOnlyNumber        = 1 << 10,  // 只能输入纯数字
+    AFInputRestrictionOptionOnlyChinese       = 1 << 11,  // 只能输入纯中文
+    AFInputRestrictionOptionMaxLength         = 1 << 20,  // 长度限制，不需要设置枚举，只要设置maxLenght大于0即可
 };
 
 typedef void(^BeyondRestrictionHandle)(AFInputRestrictionOptions restriction);

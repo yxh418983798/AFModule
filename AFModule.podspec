@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.5'
+  s.version          = '1.4.6'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '外设音频输出的判断'
+  s.description      = '新增禁止输入数字，修复中文判断的bug'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

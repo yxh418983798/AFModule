@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"测试" style:(UIBarButtonItemStylePlain) target:self action:@selector(rightAction)];
     
     self.view.backgroundColor = UIColor.whiteColor;
@@ -33,20 +34,22 @@
     _textField.backgroundColor = UIColor.lightGrayColor;
     _textField.textColor = UIColor.blackColor;
 //    _textField.module.maxLenght = 3;
-    _textField.secureTextEntry = YES;
     // 设置 输入的限制类型
-//    _textField.module.restrictOption = AFInputRestrictionOptionNumber;
+    _textField.module.restrictOption = AFInputRestrictionOptionNoneNullFirstChar | AFInputRestrictionOptionNotSpecialChar | AFInputRestrictionOptionNotNumber;
     // 超出输入限制 的回调
     _textField.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
-        if (restriction == AFInputRestrictionOptionMaxLength) {
+        if (restriction & AFInputRestrictionOptionMaxLength) {
             NSLog(@"-------------------------- 超出长度限制 --------------------------");
-        } else if (restriction == AFInputRestrictionOptionNumber) {
+        } else if (restriction & AFInputRestrictionOptionOnlyNumber) {
             NSLog(@"-------------------------- 只能输入纯数字 --------------------------");
         }
     };
     [self.view addSubview:_textField];
     
-        
+    return;
+    
+    
+    
     UITextField *tf = [UITextField new];
     tf.frame = CGRectMake(50, 200, 200, 50);
     tf.backgroundColor = UIColor.lightGrayColor;
@@ -54,12 +57,12 @@
 //    tf.module.maxLenght = 3;
     tf.secureTextEntry = NO;
     // 设置 输入的限制类型
-//    _textField.module.restrictOption = AFInputRestrictionOptionNumber;
+//    _textField.module.restrictOption = AFInputRestrictionOptionOnlyNumber;
     // 超出输入限制 的回调
     tf.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
         if (restriction == AFInputRestrictionOptionMaxLength) {
             NSLog(@"-------------------------- 超出长度限制 --------------------------");
-        } else if (restriction == AFInputRestrictionOptionNumber) {
+        } else if (restriction == AFInputRestrictionOptionOnlyNumber) {
             NSLog(@"-------------------------- 只能输入纯数字 --------------------------");
         }
     };
@@ -91,6 +94,24 @@
         }
     };
     [self.view addSubview:_textView];
+    
+    
+    
+    UILabel *label = [UILabel new];
+    label.frame = CGRectMake(50, 50, 300, 100);
+    label.attributedText = nil;
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"测试一下" attributes:@{NSForegroundColorAttributeName : UIColor.blackColor}];
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSBundle.mainBundle pathForResource:@"text.gif" ofType:nil]];
+    if (image) {
+        NSTextAttachment *attachment = NSTextAttachment.new;
+        attachment.image = image;
+        attachment.bounds = CGRectMake(0, -4, 33, 48);
+        NSAttributedString *attrImageStr = [NSAttributedString attributedStringWithAttachment:attachment];
+        [attributeString appendAttributedString:attrImageStr];
+    }
+    label.attributedText = attributeString;
+    [self. view addSubview:label];
+    
 }
 
 

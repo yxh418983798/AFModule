@@ -1,14 +1,20 @@
 PODS:
-  - AFModule (1.4.2):
+  - AFModule (1.4.5):
     - SDWebImage
   - SDWebImage (5.6.0):
     - SDWebImage/Core (= 5.6.0)
   - SDWebImage/Core (5.6.0)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
 
 DEPENDENCIES:
   - AFModule (from `../`)
+  - YYImage
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - YYImage
   trunk:
     - SDWebImage
 
@@ -17,9 +23,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFModule: fbb976e65fc75a92121150c0b6df923c55921e6c
+  AFModule: ce25e8aeefe5bc843afff02e4a11e0878d5bc8df
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 51a5c088829107870f75778681f6f5ee8d83711a
+PODFILE CHECKSUM: e6a50b6c5ed090952610dc94049c0b6ed45952f0
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

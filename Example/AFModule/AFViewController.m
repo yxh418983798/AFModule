@@ -10,6 +10,8 @@
 #import "AFTextModuleViewController.h"
 #import "AFTimerViewController.h"
 #import "AFKVOViewController.h"
+#import "AFGifTextViewController.h"
+
 //#import "AFBrowserTestViewController.h"
 //#import "AFAVCaptureViewController.h"
 //#import "AFAVEditViewController.h"
@@ -118,6 +120,7 @@
     [self addDataWithText:@"AFSearchController" class:@"AFBrowserTestViewController"];
     [self addDataWithText:@"AFAVCapture" class:@"AFAVCaptureViewController"];
     [self addDataWithText:@"AFNavigationTitleViewController" class:@"AFNavigationTitleViewController"];
+    [self addDataWithText:@"图片混排" class:@"AFGifTextViewController"];
     
     
 //    AFAVCaptureViewController *avCaptureVC = [AFAVCaptureViewController new];
