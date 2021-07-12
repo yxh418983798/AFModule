@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.7'
+  s.version          = '1.4.8'
   s.summary          = 'iOS 基础组件库'
   s.description      = '修复textView长度限制的bug'
 

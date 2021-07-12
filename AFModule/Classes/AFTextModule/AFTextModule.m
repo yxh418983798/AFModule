@@ -402,7 +402,7 @@
         if (selectedRang && pos) {
             NSInteger startOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRang.start];
             if (startOffset < maxLenght) {
-                return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+                return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             } else {
                 if (textView.module.beyondRestrictionHandle) {
                     textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
@@ -416,7 +416,6 @@
         NSInteger canInputLength = maxLenght - [self displayLengthWithString:comcatStr];
         if (canInputLength >= 0) {
             return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-//            return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
         } else {
             NSInteger length = [self displayLengthWithString:text] + canInputLength;
             NSRange rang = {0, MAX(length, 0)};
