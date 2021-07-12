@@ -29,24 +29,24 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
 
-    _textField = [UITextField new];
-    _textField.frame = CGRectMake(50, 100, 200, 50);
-    _textField.backgroundColor = UIColor.lightGrayColor;
-    _textField.textColor = UIColor.blackColor;
-//    _textField.module.maxLenght = 3;
-    // 设置 输入的限制类型
-    _textField.module.restrictOption = AFInputRestrictionOptionNoneNullFirstChar | AFInputRestrictionOptionNotSpecialChar | AFInputRestrictionOptionNotNumber;
-    // 超出输入限制 的回调
-    _textField.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
-        if (restriction & AFInputRestrictionOptionMaxLength) {
-            NSLog(@"-------------------------- 超出长度限制 --------------------------");
-        } else if (restriction & AFInputRestrictionOptionOnlyNumber) {
-            NSLog(@"-------------------------- 只能输入纯数字 --------------------------");
-        }
-    };
-    [self.view addSubview:_textField];
-    
-    return;
+//    _textField = [UITextField new];
+//    _textField.frame = CGRectMake(50, 100, 200, 50);
+//    _textField.backgroundColor = UIColor.lightGrayColor;
+//    _textField.textColor = UIColor.blackColor;
+////    _textField.module.maxLenght = 3;
+//    // 设置 输入的限制类型
+//    _textField.module.restrictOption = AFInputRestrictionOptionNoneNullFirstChar | AFInputRestrictionOptionNotSpecialChar | AFInputRestrictionOptionNotNumber;
+//    // 超出输入限制 的回调
+//    _textField.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
+//        if (restriction & AFInputRestrictionOptionMaxLength) {
+//            NSLog(@"-------------------------- 超出长度限制 --------------------------");
+//        } else if (restriction & AFInputRestrictionOptionOnlyNumber) {
+//            NSLog(@"-------------------------- 只能输入纯数字 --------------------------");
+//        }
+//    };
+//    [self.view addSubview:_textField];
+//    
+//    return;
     
     
     
@@ -77,7 +77,7 @@
     // 占位文字
     _textView.module.placeholderLb.text = @"请输入吧";
     // 设置 输入字符 最大长度
-//    _textView.module.maxLenght = 3;
+    _textView.module.maxLenght = 3;
     //展示剩余可输入字符数量的提示
     _textView.module.lenghtTipEnable = YES;
     // 设置 输入的限制类型: 禁止输入中文  禁止输入表情

@@ -415,7 +415,8 @@
         NSString *comcatStr = [textView.text stringByReplacingCharactersInRange:range withString:text];
         NSInteger canInputLength = maxLenght - [self displayLengthWithString:comcatStr];
         if (canInputLength >= 0) {
-            return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
+            return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
+//            return [self afhook_textView:textView shouldChangeTextInRange:range replacementText:text];
         } else {
             NSInteger length = [self displayLengthWithString:text] + canInputLength;
             NSRange rang = {0, MAX(length, 0)};

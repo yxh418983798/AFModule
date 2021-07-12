@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.6'
+  s.version          = '1.4.7'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '新增禁止输入数字，修复中文判断的bug'
+  s.description      = '修复textView长度限制的bug'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
