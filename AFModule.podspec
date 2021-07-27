@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.8'
+  s.version          = '1.4.9'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '修复textView长度限制的bug'
+  s.description      = '修复表情输入的字符长度判断问题'
 
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

@@ -32,9 +32,33 @@ void AFTextViewMethodSelector() {}
 
 
 - (void)afhook_setText:(NSString *)text {
-    [self afhook_setText:text];
-    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
-        [self.delegate textViewDidChange:self];
+    
+    if (self.module.maxLenght > 0) {
+        NSMutableString *resultString = NSMutableString.string;
+        UITextRange *selectedRange = self.markedTextRange;
+        UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
+        if (selectedRange && position) return;
+        __block NSInteger existNum = 0;
+        [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+            existNum++;
+            if (existNum <= self.module.maxLenght) {
+                [resultString appendString:substring];
+            }
+        }];
+        
+        //更新字符长度
+        if (self.module.lenghtTipEnable) {
+            self.module.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(self.module.maxLenght - existNum), 0), self.module.maxLenght];
+        }
+        [self afhook_setText:resultString.copy];
+        if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [self.delegate textViewDidChange:self];
+        }
+    } else {
+        [self afhook_setText:text];
+        if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [self.delegate textViewDidChange:self];
+        }
     }
 }
 

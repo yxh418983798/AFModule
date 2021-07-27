@@ -244,22 +244,30 @@
             ((void (*)(id, SEL, id))objc_msgSend)(self, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]), textView);
         }
     }
-    if (textView.module.maxLenght > 0) {
-
-        UITextRange *selectedRange = textView.markedTextRange;
-        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
-        if (selectedRange && position) return;
-        NSString *text = textView.text;
-        NSInteger existNum = [self displayLengthWithString:text];
-        if (existNum > textView.module.maxLenght) {
-            textView.text = [text substringToIndex:textView.module.maxLenght];
-        }
-        
-        //更新字符长度
-        if (textView.module.lenghtTipEnable) {
-            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(textView.module.maxLenght - existNum), 0), textView.module.maxLenght];
-        }
-    }
+//    if (textView.module.maxLenght > 0) {
+//
+//        UITextRange *selectedRange = textView.markedTextRange;
+//        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+//        if (selectedRange && position) return;
+//        NSString *text = textView.text;
+//        __block NSInteger existNum = 0;
+//        NSMutableString *resultString = NSMutableString.string;
+//        [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+//            if (existNum <= textView.module.maxLenght) {
+//                [resultString appendString:substring];
+//            }
+//            existNum++;
+//        }];
+//        
+//        if (existNum > textView.module.maxLenght) {
+//            textView.text = resultString.copy;
+//        }
+//        
+//        //更新字符长度
+//        if (textView.module.lenghtTipEnable) {
+//            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(textView.module.maxLenght - existNum), 0), textView.module.maxLenght];
+//        }
+//    }
 }
 
 - (BOOL)afhook_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
