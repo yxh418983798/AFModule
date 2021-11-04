@@ -5,6 +5,9 @@
 //  Created by alfie on 2019/11/25.
 //  Copyright © 2019 Alfie. All rights reserved.
 //
+//  Version 1.5.0
+//  修复Bug：输入字符长度计算不正确的问题
+//  新增功能：UITextView的长度提示
 
 #import <Foundation/Foundation.h>
 #import "UITextField+AFModule.h"
@@ -24,6 +27,15 @@ typedef NS_OPTIONS(NSInteger, AFInputRestrictionOptions) {
     AFInputRestrictionOptionOnlyChinese       = 1 << 11,  // 只能输入纯中文
     AFInputRestrictionOptionMaxLength         = 1 << 20,  // 长度限制，不需要设置枚举，只要设置maxLenght大于0即可
 };
+
+
+#pragma mark - 字符长度提示
+typedef NS_OPTIONS(NSInteger, AFLengthTipOption) {
+    AFLengthTipOptionDisable,  ///< 不展示
+    AFLengthTipOptionDidInput, ///< 展示已输入的字符长度
+    AFLengthTipOptionCanInput, ///< 展示可输入的字符长度
+};
+ 
 
 typedef void(^BeyondRestrictionHandle)(AFInputRestrictionOptions restriction);
 
@@ -56,10 +68,10 @@ typedef void(^BeyondRestrictionHandle)(AFInputRestrictionOptions restriction);
 }
 
 /** 剩余字符提示 */
-@property (nonatomic, strong, readonly) UILabel         *lenghtTipLb;
+@property (nonatomic, strong, readonly) UILabel   *lenghtTipLb;
 
 /** 是否展示字符提示，默认NO */
-@property (assign, nonatomic) BOOL                      lenghtTipEnable;
+@property (assign, nonatomic) AFLengthTipOption   lenghtTipOption;
 
 @end
 

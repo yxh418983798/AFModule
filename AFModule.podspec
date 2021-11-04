@@ -8,10 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.4.9'
+  s.version          = '1.5.0'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '修复表情输入的字符长度判断问题'
-
+  s.description      = '修复Bug：输入字符长度计算不正确的问题，新增功能：UITextView的长度提示'
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Alfie' => '418983798@qq.com' }

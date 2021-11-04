@@ -51,10 +51,10 @@
     
     
     UITextField *tf = [UITextField new];
-    tf.frame = CGRectMake(50, 200, 200, 50);
+    tf.frame = CGRectMake(50, 100, 200, 50);
     tf.backgroundColor = UIColor.lightGrayColor;
     tf.textColor = UIColor.blackColor;
-//    tf.module.maxLenght = 3;
+    tf.module.maxLenght = 10;
     tf.secureTextEntry = NO;
     // 设置 输入的限制类型
 //    _textField.module.restrictOption = AFInputRestrictionOptionOnlyNumber;
@@ -70,16 +70,16 @@
     
     
     _textView = [UITextView new];
-    _textView.frame = CGRectMake(50, 400, 300, 400);
+    _textView.frame = CGRectMake(50, 200, 300, 100);
     _textView.backgroundColor = UIColor.grayColor;
     _textView.font = [UIFont systemFontOfSize:16];
 //    _textView.
     // 占位文字
     _textView.module.placeholderLb.text = @"请输入吧";
     // 设置 输入字符 最大长度
-    _textView.module.maxLenght = 3;
+    _textView.module.maxLenght = 5;
     //展示剩余可输入字符数量的提示
-    _textView.module.lenghtTipEnable = YES;
+    _textView.module.lenghtTipOption = AFLengthTipOptionCanInput;
     // 设置 输入的限制类型: 禁止输入中文  禁止输入表情
 //    _textView.module.restrictOption = AFInputRestrictionOptionNotChinese | AFInputRestrictionOptionNotEmoji;
     // 超出输入限制 的回调

@@ -173,39 +173,48 @@
     
     NSInteger maxLenght = textField.module.maxLenght;
     if (maxLenght > 0) {
+        
+        NSString *replaceString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSInteger replaceLength = [self displayLengthWithString:replaceString];
+        
+        // 长度没有超出，交给外部判断
+        if (replaceLength <= maxLenght) {
+            return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+        }
+        // 超出长度，判断是否有高亮
         UITextRange *selectedRang = [textField markedTextRange];
         UITextPosition *pos = [textField positionFromPosition:selectedRang.start offset:0];
         if (selectedRang && pos) {
-            NSInteger startOffset = [textField offsetFromPosition:textField.beginningOfDocument toPosition:selectedRang.start];
-            if (startOffset < maxLenght) {
+            // 点击键盘
+            if (!range.length) {
                 return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-            } else {
-                if (textField.module.beyondRestrictionHandle) {
-                    textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
-                }
-                [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-                return NO;
             }
         }
-
-        NSString *comcatStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        NSInteger canInputLength = maxLenght - [self displayLengthWithString:comcatStr];
-        if (canInputLength >= 0) {
-            return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
-        } else {
-            NSInteger length = [self displayLengthWithString:string] + canInputLength;
-            NSRange rang = {0, MAX(length, 0)};
-            if (rang.length > 0) {
-                NSString *subString = [string substringWithRange:rang];
-                textField.text = [textField.text stringByAppendingString:subString];
-//                textField.text = [textField.text stringByReplacingCharactersInRange:rang withString:subString];
-            }
-            if (textField.module.beyondRestrictionHandle) {
-                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
-            }
+        
+        // 插入的长度
+        NSInteger stringLength = [self displayLengthWithString:string];
+        // 可输入长度
+        __block NSInteger inputLength = maxLenght - replaceLength + stringLength;
+        if (inputLength <= 0) {
             [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
+        __block NSString *inputString = @"";
+        [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+            if (inputLength > 0) {
+                inputString = [inputString stringByAppendingString:substring];
+                inputLength--;
+            } else {
+                *stop = YES;
+            }
+        }];
+        NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:inputString];
+        textField.text = resultString;
+        if (textField.module.beyondRestrictionHandle) {
+            textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
+        }
+        [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
+        return NO;
     }
     return [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
@@ -244,30 +253,32 @@
             ((void (*)(id, SEL, id))objc_msgSend)(self, NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]), textView);
         }
     }
-//    if (textView.module.maxLenght > 0) {
-//
-//        UITextRange *selectedRange = textView.markedTextRange;
-//        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
-//        if (selectedRange && position) return;
-//        NSString *text = textView.text;
-//        __block NSInteger existNum = 0;
-//        NSMutableString *resultString = NSMutableString.string;
-//        [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
-//            if (existNum <= textView.module.maxLenght) {
-//                [resultString appendString:substring];
-//            }
-//            existNum++;
-//        }];
-//        
-//        if (existNum > textView.module.maxLenght) {
-//            textView.text = resultString.copy;
-//        }
-//        
-//        //更新字符长度
-//        if (textView.module.lenghtTipEnable) {
-//            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(textView.module.maxLenght - existNum), 0), textView.module.maxLenght];
-//        }
-//    }
+    
+    //更新字符长度
+    switch (textView.module.lenghtTipOption) {
+        case AFLengthTipOptionDidInput: {
+            NSMutableString *text = textView.text.mutableCopy;
+            UITextRange *selectedRang = [textView markedTextRange];
+            if (selectedRang) {
+                [text deleteCharactersInRange:[text rangeOfString:[textView textInRange:selectedRang]]];
+            }
+            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%zi/%zi", [self displayLengthWithString:text], textView.module.maxLenght];
+        }
+            break;
+            
+        case AFLengthTipOptionCanInput: {
+            NSMutableString *text = textView.text.mutableCopy;
+            UITextRange *selectedRang = [textView markedTextRange];
+            if (selectedRang) {
+                [text deleteCharactersInRange:[text rangeOfString:[textView textInRange:selectedRang]]];
+            }
+            textView.module.lenghtTipLb.text = [NSString stringWithFormat:@"%zi/%zi", textView.module.maxLenght - [self displayLengthWithString:text], textView.module.maxLenght];
+        }
+            break;
+
+        default:
+            break;
+    }
 }
 
 - (BOOL)afhook_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -405,40 +416,50 @@
     
     NSInteger maxLenght = textView.module.maxLenght;
     if (maxLenght > 0) {
+
+        NSString *replaceString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+        NSInteger replaceLength = [self displayLengthWithString:replaceString];
+
+        // 长度没有超出，交给外部判断
+        if (replaceLength <= maxLenght) {
+            return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
+        }
+        // 超出长度，判断是否有高亮
         UITextRange *selectedRang = [textView markedTextRange];
         UITextPosition *pos = [textView positionFromPosition:selectedRang.start offset:0];
         if (selectedRang && pos) {
-            NSInteger startOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRang.start];
-            if (startOffset < maxLenght) {
+            // 点击键盘
+            if (!range.length) {
                 return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-            } else {
-                if (textView.module.beyondRestrictionHandle) {
-                    textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
-                }
-                [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-                return NO;
             }
         }
 
-        NSString *comcatStr = [textView.text stringByReplacingCharactersInRange:range withString:text];
-        NSInteger canInputLength = maxLenght - [self displayLengthWithString:comcatStr];
-        if (canInputLength >= 0) {
-            return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
-        } else {
-            NSInteger length = [self displayLengthWithString:text] + canInputLength;
-            NSRange rang = {0, MAX(length, 0)};
-            if (rang.length > 0) {
-                NSString *subString = [text substringWithRange:rang];
-                textView.text = [textView.text stringByAppendingString:subString];
-//                textView.text = [textView.text stringByReplacingCharactersInRange:rang withString:subString];
-            }
-            if (textView.module.beyondRestrictionHandle) {
-                textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
-            }
+        // 插入的长度
+        NSInteger stringLength = [self displayLengthWithString:text];
+        // 可输入长度
+        __block NSInteger inputLength = maxLenght - replaceLength + stringLength;
+        if (inputLength <= 0) {
             [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }
+        __block NSString *inputString = @"";
+        [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+            if (inputLength > 0) {
+                inputString = [inputString stringByAppendingString:substring];
+                inputLength--;
+            } else {
+                *stop = YES;
+            }
+        }];
+        NSString *resultString = [textView.text stringByReplacingCharactersInRange:range withString:inputString];
+        textView.text = resultString;
+        if (textView.module.beyondRestrictionHandle) {
+            textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
+        }
+        [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
+        return NO;
     }
+
     return [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
 }
 
@@ -506,22 +527,55 @@
     return _lenghtTipLb;
 }
 
-- (void)setLenghtTipEnable:(BOOL)lenghtTipEnable {
-    _lenghtTipEnable = lenghtTipEnable;
-    if (lenghtTipEnable) {
-        [self.target addSubview:self.lenghtTipLb];
-        if (self.maxLenght > 0) {
-            self.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(self.maxLenght - [self displayLengthWithString:[(UITextView *)self.target text]]), 0), self.maxLenght];
+- (void)setLenghtTipOption:(AFLengthTipOption)lenghtTipOption {
+    _lenghtTipOption = lenghtTipOption;
+    switch (lenghtTipOption) {
+        case AFLengthTipOptionDidInput: {
+            [self.target addSubview:self.lenghtTipLb];
+            if (self.maxLenght > 0) {
+                self.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)([self displayLengthWithString:[(UITextView *)self.target text]]), 0), self.maxLenght];
+            }
         }
-    } else {
-        if (_lenghtTipLb.superview) [_lenghtTipLb removeFromSuperview];
+            break;
+            
+        case AFLengthTipOptionCanInput: {
+            [self.target addSubview:self.lenghtTipLb];
+            if (self.maxLenght > 0) {
+                self.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)([self displayLengthWithString:[(UITextView *)self.target text]]), 0), self.maxLenght];
+            }
+        }
+            break;
+
+        default:
+            if (_lenghtTipLb.superview) [_lenghtTipLb removeFromSuperview];
+            break;
     }
 }
 
 - (void)setMaxLenght:(NSInteger)maxLenght {
     [super setMaxLenght:maxLenght];
-    if (maxLenght > 0 && self.lenghtTipEnable) {
-        self.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)(self.maxLenght - [self displayLengthWithString:[(UITextView *)self.target text]]), 0), self.maxLenght];
+    if (maxLenght > 0) {
+        switch (self.lenghtTipOption) {
+            case AFLengthTipOptionDidInput: {
+                [self.target addSubview:self.lenghtTipLb];
+                if (self.maxLenght > 0) {
+                    self.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)([self displayLengthWithString:[(UITextView *)self.target text]]), 0), self.maxLenght];
+                }
+            }
+                break;
+                
+            case AFLengthTipOptionCanInput: {
+                [self.target addSubview:self.lenghtTipLb];
+                if (self.maxLenght > 0) {
+                    self.lenghtTipLb.text = [NSString stringWithFormat:@"%d/%zi", MAX((int)([self displayLengthWithString:[(UITextView *)self.target text]]), 0), self.maxLenght];
+                }
+            }
+                break;
+
+            default:
+                if (_lenghtTipLb.superview) [_lenghtTipLb removeFromSuperview];
+                break;
+        }
     }
 }
 
