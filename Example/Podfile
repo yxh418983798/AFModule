@@ -6,6 +6,7 @@ platform :ios, '9.0'
 target 'AFModule_Example' do
   pod 'AFModule', :path => '../'
   pod 'YYText'
+  pod 'assimpKit'
   target 'AFModule_Tests' do
     inherit! :search_paths
 

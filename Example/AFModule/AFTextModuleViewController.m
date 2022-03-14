@@ -9,7 +9,7 @@
 #import "AFTextModuleViewController.h"
 #import "AFTextModule.h"
 
-@interface AFTextModuleViewController ()
+@interface AFTextModuleViewController () <UITextViewDelegate>
 
 /** textField */
 @property (strong, nonatomic) UITextField           *textField;
@@ -70,29 +70,30 @@
     
     
     _textView = [UITextView new];
+    _textView.delegate = self;
     _textView.frame = CGRectMake(50, 200, 300, 100);
     _textView.backgroundColor = UIColor.grayColor;
     _textView.font = [UIFont systemFontOfSize:16];
 //    _textView.
     // 占位文字
-    _textView.module.placeholderLb.text = @"请输入吧";
+//    _textView.module.placeholderLb.text = @"请输入吧";
     // 设置 输入字符 最大长度
-    _textView.module.maxLenght = 5;
+//    _textView.module.maxLenght = 5;
     //展示剩余可输入字符数量的提示
-    _textView.module.lenghtTipOption = AFLengthTipOptionCanInput;
+//    _textView.module.lenghtTipOption = AFLengthTipOptionCanInput;
     // 设置 输入的限制类型: 禁止输入中文  禁止输入表情
 //    _textView.module.restrictOption = AFInputRestrictionOptionNotChinese | AFInputRestrictionOptionNotEmoji;
     // 超出输入限制 的回调
-    _textView.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
-        
-        if (restriction == AFInputRestrictionOptionMaxLength) {
-            NSLog(@"-------------------------- 超出长度限制 --------------------------");
-        } else if (restriction == AFInputRestrictionOptionNotChinese) {
-            NSLog(@"-------------------------- 禁止输入中文 --------------------------");
-            } else if (restriction == AFInputRestrictionOptionNotEmoji) {
-            NSLog(@"-------------------------- 禁止输入表情 --------------------------");
-        }
-    };
+//    _textView.module.beyondRestrictionHandle = ^(AFInputRestrictionOptions restriction) {
+//
+//        if (restriction == AFInputRestrictionOptionMaxLength) {
+//            NSLog(@"-------------------------- 超出长度限制 --------------------------");
+//        } else if (restriction == AFInputRestrictionOptionNotChinese) {
+//            NSLog(@"-------------------------- 禁止输入中文 --------------------------");
+//            } else if (restriction == AFInputRestrictionOptionNotEmoji) {
+//            NSLog(@"-------------------------- 禁止输入表情 --------------------------");
+//        }
+//    };
     [self.view addSubview:_textView];
     
     
@@ -122,5 +123,9 @@
 
 - (void)rightAction {
     _textField.secureTextEntry = !_textField.secureTextEntry;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    NSLog(@"-------------------------- 字数：%ld --------------------------", textView.text.length);
 }
 @end

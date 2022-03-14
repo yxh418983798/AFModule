@@ -196,6 +196,9 @@
         // 可输入长度
         __block NSInteger inputLength = maxLenght - replaceLength + stringLength;
         if (inputLength <= 0) {
+            if (textField.module.beyondRestrictionHandle) {
+                textField.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
+            }
             [self afperform_textField:textField shouldChangeCharactersInRange:range replacementString:string];
             return NO;
         }
@@ -439,6 +442,9 @@
         // 可输入长度
         __block NSInteger inputLength = maxLenght - replaceLength + stringLength;
         if (inputLength <= 0) {
+            if (textView.module.beyondRestrictionHandle) {
+                textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
+            }
             [self afperform_textView:textView shouldChangeTextInRange:range replacementText:text];
             return NO;
         }

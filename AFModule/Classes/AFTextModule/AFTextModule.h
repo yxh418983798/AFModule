@@ -5,9 +5,8 @@
 //  Created by alfie on 2019/11/25.
 //  Copyright © 2019 Alfie. All rights reserved.
 //
-//  Version 1.5.0
-//  修复Bug：输入字符长度计算不正确的问题
-//  新增功能：UITextView的长度提示
+//  Version 1.5.1
+//  修复Bug：输入字符长度超出没有回调的问题
 
 #import <Foundation/Foundation.h>
 #import "UITextField+AFModule.h"
