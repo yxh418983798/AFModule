@@ -5,8 +5,8 @@
 //  Created by alfie on 2019/11/25.
 //  Copyright © 2019 Alfie. All rights reserved.
 //
-//  Version 1.5.1
-//  修复Bug：输入字符长度超出没有回调的问题
+//  Version 1.5.2
+//  修复Bug：输入框设置文本时超过最大长度的回调没有走的问题
 
 #import <Foundation/Foundation.h>
 #import "UITextField+AFModule.h"

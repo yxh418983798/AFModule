@@ -223,16 +223,22 @@
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {
-    
-    if (textField.module.maxLenght > 0) {
+    NSString *text = textField.text;
+    if (textField.module.maxLenght > 0 && text.length > textField.module.maxLenght && !textField.isFirstResponder) {
         UITextRange *selectedRange = textField.markedTextRange;
         UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
         if (selectedRange && position) return;
-        NSString *text = textField.text;
-        NSInteger existNum = [self displayLengthWithString:text];
-        if (existNum > textField.module.maxLenght) {
-            textField.text = [text substringToIndex:textField.module.maxLenght];
-        }
+        __block NSInteger inputLength = 0;
+        __block NSString *inputString = @"";
+        [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+            inputLength++;
+            if (inputLength <= textField.module.maxLenght) {
+                inputString = [inputString stringByAppendingString:substring];
+            } else {
+                *stop = YES;
+                textField.text = inputString;
+            }
+        }];
     }
 }
 
@@ -249,7 +255,26 @@
 
 - (void)afhook_textViewDidChange:(UITextView *)textView {
     
-    textView.module.placeholderLb.hidden = textView.text.length;
+    NSString *text = textView.text;
+    NSInteger textLength = text.length;
+    __block NSInteger inputLength = 0;
+    __block NSString *inputString = @"";
+    textView.module.placeholderLb.hidden = textLength;
+    if (textView.module.maxLenght > 0 && textLength > textView.module.maxLenght && !textView.isFirstResponder) {
+        [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:(NSStringEnumerationByComposedCharacterSequences) usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+            inputLength++;
+            if (inputLength <= textView.module.maxLenght) {
+                inputString = [inputString stringByAppendingString:substring];
+            } else {
+                *stop = YES;
+                textView.text = inputString;
+                if (textView.module.beyondRestrictionHandle) {
+                    textView.module.beyondRestrictionHandle(AFInputRestrictionOptionMaxLength);
+                }
+            }
+        }];
+        return;
+    }
     if ([self respondsToSelector:@selector(textViewDidChange:)]) {
         SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textViewDidChange:", NSStringFromClass(self.class)]);
         if ([self respondsToSelector:sel]) {
