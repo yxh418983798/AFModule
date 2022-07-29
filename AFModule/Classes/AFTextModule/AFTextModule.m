@@ -243,7 +243,20 @@
 }
 
 
-#pragma mark - UITextView
+#pragma mark - 🌺🌺UITextView
+- (void)afhook_textViewDidBeginEditing:(UITextView *)textView {
+    // 更新对齐方式
+    if (textView.module.verticalAlignment == AFTextModuleVerticalAlignmentCenter) {
+        CGFloat height = textView.contentSize.height;
+        if (!height) height = textView.subviews.firstObject.frame.size.height;
+        CGFloat value = textView.frame.size.height - height;
+        if (value > 0) {
+            textView.contentOffset = CGPointMake(textView.contentOffset.x, -value/2);
+        }
+    }
+    [self afhook_textViewDidBeginEditing:textView];
+}
+
 - (BOOL)afperform_textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     SEL sel = NSSelectorFromString([NSString stringWithFormat:@"afhook_%@_textView:shouldChangeTextInRange:replacementText:", NSStringFromClass(self.class)]);
     if ([self respondsToSelector:sel]) {
@@ -306,6 +319,16 @@
 
         default:
             break;
+    }
+    
+    // 更新对齐方式
+    if (textView.module.verticalAlignment == AFTextModuleVerticalAlignmentCenter) {
+        CGFloat height = textView.contentSize.height;
+        if (!height) height = textView.subviews.firstObject.frame.size.height;
+        CGFloat value = textView.frame.size.height - height;
+        if (value > 0) {
+            textView.contentOffset = CGPointMake(textView.contentOffset.x, -value/2);
+        }
     }
 }
 

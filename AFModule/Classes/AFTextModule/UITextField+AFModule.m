@@ -18,14 +18,16 @@ static const char *AFTextModuleKey = "AFTextModuleKey";
 void AFTextFieldMethodSelector() {}
 
 + (void)load {
-
-    Method original = class_getInstanceMethod(UITextField.class, @selector(setDelegate:));
-    Method swizzl = class_getInstanceMethod(UITextField.class, @selector(afhook_setDelegate:));
-    if (class_addMethod(UITextField.class, @selector(setDelegate:), method_getImplementation(swizzl), method_getTypeEncoding(swizzl))) {
-        class_replaceMethod(UITextField.class, @selector(afhook_setDelegate:), method_getImplementation(original), method_getTypeEncoding(original));
-    } else {
-        method_exchangeImplementations(original, swizzl);
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method original = class_getInstanceMethod(UITextField.class, @selector(setDelegate:));
+        Method swizzl = class_getInstanceMethod(UITextField.class, @selector(afhook_setDelegate:));
+        if (class_addMethod(UITextField.class, @selector(setDelegate:), method_getImplementation(swizzl), method_getTypeEncoding(swizzl))) {
+            class_replaceMethod(UITextField.class, @selector(afhook_setDelegate:), method_getImplementation(original), method_getTypeEncoding(original));
+        } else {
+            method_exchangeImplementations(original, swizzl);
+        }
+    });
 }
 
 

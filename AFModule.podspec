@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AFModule'
-  s.version          = '1.5.2'
+  s.version          = '1.6.0'
   s.summary          = 'iOS 基础组件库'
-  s.description      = '修复Bug：修复Bug：输入框设置文本时超过最大长度的回调没有走的问题'
+  s.description      = 'textView新增竖直方向居中对齐，交换方法'
   s.homepage         = 'https://github.com/yxh418983798/AFModule'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Alfie' => '418983798@qq.com' }

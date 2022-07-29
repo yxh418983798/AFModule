@@ -5,8 +5,9 @@
 //  Created by alfie on 2019/11/25.
 //  Copyright © 2019 Alfie. All rights reserved.
 //
-//  Version 1.5.2
-//  修复Bug：输入框设置文本时超过最大长度的回调没有走的问题
+//  Version 1.6.0
+//  textView新增竖直方向居中对齐
+//  交换方法
 
 #import <Foundation/Foundation.h>
 #import "UITextField+AFModule.h"
@@ -33,6 +34,13 @@ typedef NS_OPTIONS(NSInteger, AFLengthTipOption) {
     AFLengthTipOptionDisable,  ///< 不展示
     AFLengthTipOptionDidInput, ///< 展示已输入的字符长度
     AFLengthTipOptionCanInput, ///< 展示可输入的字符长度
+};
+ 
+
+#pragma mark - textView竖直方向对齐方式
+typedef NS_OPTIONS(NSInteger, AFTextModuleVerticalAlignment) {
+    AFTextModuleVerticalAlignmentDefault,  ///< 默认，顶部对齐
+    AFTextModuleVerticalAlignmentCenter, ///< 居中对齐
 };
  
 
@@ -71,6 +79,9 @@ typedef void(^BeyondRestrictionHandle)(AFInputRestrictionOptions restriction);
 
 /** 是否展示字符提示，默认NO */
 @property (assign, nonatomic) AFLengthTipOption   lenghtTipOption;
+
+/** 是否垂直居中显示文本，默认NO */
+@property (nonatomic, assign) AFTextModuleVerticalAlignment   verticalAlignment;
 
 @end
 

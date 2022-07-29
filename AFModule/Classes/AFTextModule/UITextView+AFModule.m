@@ -19,15 +19,17 @@ static const char *AFTextViewModuleKey = "AFTextViewModuleKey";
 void AFTextViewMethodSelector() {}
 
 + (void)load {
-
-    Method original = class_getInstanceMethod(UITextView.class, @selector(setDelegate:));
-    Method swizzl = class_getInstanceMethod(UITextView.class, @selector(afhook_setDelegate:));
-    if (class_addMethod(UITextView.class, @selector(setDelegate:), method_getImplementation(swizzl), method_getTypeEncoding(swizzl))) {
-        class_replaceMethod(UITextView.class, @selector(afhook_setDelegate:), method_getImplementation(original), method_getTypeEncoding(original));
-    } else {
-        method_exchangeImplementations(original, swizzl);
-    }
-    method_exchangeImplementations(class_getInstanceMethod(UITextView.class, @selector(setText:)), class_getInstanceMethod(UITextView.class, @selector(afhook_setText:)));
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method original = class_getInstanceMethod(UITextView.class, @selector(setDelegate:));
+        Method swizzl = class_getInstanceMethod(UITextView.class, @selector(afhook_setDelegate:));
+        if (class_addMethod(UITextView.class, @selector(setDelegate:), method_getImplementation(swizzl), method_getTypeEncoding(swizzl))) {
+            class_replaceMethod(UITextView.class, @selector(afhook_setDelegate:), method_getImplementation(original), method_getTypeEncoding(original));
+        } else {
+            method_exchangeImplementations(original, swizzl);
+        }
+        method_exchangeImplementations(class_getInstanceMethod(UITextView.class, @selector(setText:)), class_getInstanceMethod(UITextView.class, @selector(afhook_setText:)));
+    });
 }
 
 
@@ -68,7 +70,8 @@ void AFTextViewMethodSelector() {}
         [self swizzleInstanceMethodWithClass:swizzleClass originalSel:@selector(textView:shouldChangeTextInRange:replacementText:) swizzledSel:@selector(afhook_textView:shouldChangeTextInRange:replacementText:) addSel:@selector(afadd_textView:shouldChangeTextInRange:replacementText:)];
         
         [self swizzleInstanceMethodWithClass:swizzleClass originalSel:@selector(textViewDidChange:) swizzledSel:@selector(afhook_textViewDidChange:) addSel:@selector(afadd_textViewDidChange:)];
-        
+
+        [self swizzleDelegateMethod:delegate originalSel:@selector(textViewDidBeginEditing:) swizzleSel:@selector(afhook_textViewDidBeginEditing:)];
     }
     [self afhook_setDelegate:delegate];
 }
@@ -94,6 +97,20 @@ void AFTextViewMethodSelector() {}
     }
 }
 
+static void AFModuleAddIMPSelector() {}
+- (void)swizzleDelegateMethod:(id)delegate originalSel:(SEL)originalSel swizzleSel:(SEL)swizzleSel {
+    Class delegateClass = [delegate class];
+    Method swizzleMethod = class_getInstanceMethod(delegateClass, swizzleSel);
+    if (![delegate respondsToSelector:originalSel]) {
+        class_addMethod(delegateClass, originalSel, (IMP)AFModuleAddIMPSelector, method_getTypeEncoding(class_getInstanceMethod(delegateClass, @selector(init))));
+    }
+    if (class_addMethod(delegateClass, swizzleSel, method_getImplementation(swizzleMethod), method_getTypeEncoding(swizzleMethod))) {
+        // 添加成功，进行交换
+        Method originMethod = class_getInstanceMethod(delegateClass, originalSel);
+        swizzleMethod = class_getInstanceMethod(delegateClass, swizzleSel);
+        method_exchangeImplementations(originMethod, swizzleMethod);
+    }
+}
 
 - (void)setModule:(AFTextViewModule *)module {
     objc_setAssociatedObject(self, AFTextViewModuleKey, module, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
